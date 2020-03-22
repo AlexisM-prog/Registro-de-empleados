@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Registro", "Registro de empleados\Registro.vbproj", "{4876B274-D6BE-48D9-AD20-846D738FD898}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaRegistro", "LogicaRegistro\LogicaRegistro.vbproj", "{AB55D721-C0C6-4B73-B098-D199C15ECCD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4876B274-D6BE-48D9-AD20-846D738FD898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4876B274-D6BE-48D9-AD20-846D738FD898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4876B274-D6BE-48D9-AD20-846D738FD898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4876B274-D6BE-48D9-AD20-846D738FD898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB55D721-C0C6-4B73-B098-D199C15ECCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB55D721-C0C6-4B73-B098-D199C15ECCD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB55D721-C0C6-4B73-B098-D199C15ECCD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB55D721-C0C6-4B73-B098-D199C15ECCD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {576E14AD-2334-4035-960C-727DBBA0E477}
+	EndGlobalSection
+EndGlobal
