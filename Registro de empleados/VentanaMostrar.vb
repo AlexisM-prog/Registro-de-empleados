@@ -116,7 +116,7 @@ Public Class VentanaMostrar
                     Next
                 Case 3
 
-                Case 4
+                Case 4x
                 Case Else
                     Console.WriteLine("Opcion Incorrecta")
                     Thread.Sleep(espera)
