@@ -39,15 +39,16 @@
     Function setEsBis(esBis As Boolean)
         Me.esBis = esBis
     End Function
-    Function setSueldoPorMes(sueldoPorMes As Integer)
+    Function setSueldoPorMes(_sueldoPorMes As Integer)
         Select Case tipoEmpleado
             Case 0 'Es Gerente
-                sueldoPorMes *= 1.97 '1 + 0.97
+                _sueldoPorMes *= 1.97 '1 + 0.97
             Case 1 'Es Operario
-                sueldoPorMes *= 1.38
+                _sueldoPorMes *= 1.38
             Case 2 'Es administrativo
-                sueldoPorMes *= 1.27
+                _sueldoPorMes *= 1.27
         End Select
+        Me.sueldoPorMes = _sueldoPorMes
     End Function
     Function setTipoEmpleado(tipoEmpleado As Integer)
         Me.tipoEmpleado = tipoEmpleado

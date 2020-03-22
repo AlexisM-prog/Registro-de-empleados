@@ -8,6 +8,7 @@ Public Class VentanaMostrar
     Private empAux As Empleado
     Sub New()
         empleados = New List(Of Empleado)
+        Me.empAux = New Empleado()
         espera = 2000
         opcion = 0
         administrarPagos()
@@ -39,92 +40,130 @@ Public Class VentanaMostrar
         Loop While Not opcion = 3
     End Function
     Function regristroEmpleado()
-
-        Me.empAux = New Empleado()
-
-        Dim telefonosAux As List(Of String) = New List(Of String)
-        Dim telefonoAux = ""
         Do
             Console.Clear()
             Console.WriteLine("REGISTRO DE EMPLEADOS")
             Console.WriteLine("1) Ingresar")
             Console.WriteLine("2) Modificar")
-            Console.WriteLine("2) Eliminar")
+            Console.WriteLine("3) Eliminar")
             Console.WriteLine("4) Atras")
             Console.Write("Ingresa opcion:")
-            opcion = Integer.Parse(Console.ReadLine())
+            Try
+                opcion = Integer.Parse(Console.ReadLine())
+            Catch ex As Exception
+                opcion = 0
+            End Try
             Select Case opcion
                 Case 1
-                    Console.Clear()
-                    Console.Write("Ingresa el primer nombre:")
-                    Me.empAux.setPNom(Console.ReadLine())
-
-                    Console.Write("Ingresa el segundo nombre:")
-                    Me.empAux.setSNom(Console.ReadLine())
-
-                    Console.Write("Ingresa el primer apellido:")
-                    Me.empAux.setPApe(Console.ReadLine())
-
-                    Console.Write("Ingresa el segundo apellido:")
-                    Me.empAux.setSApe(Console.ReadLine())
-
-                    Console.Write("Ingresa la cedula:")
-                    Me.empAux.setCI(Console.ReadLine())
-
-                    Console.Write("Ingresa la calle donde reside:")
-                    Me.empAux.setCalle(Console.ReadLine())
-
-                    Console.Write("Ingresa el nro de puerta de su residencia:")
-                    Me.empAux.setNroPuerta(Integer.Parse(Console.ReadLine()))
-
-                    Console.Write("Ingresa el nro de puerta es bis ('Si' si es):")
-                    Me.empAux.setEsBis(Console.ReadLine().Equals("Si"))
-
-                    Console.WriteLine("Cual será su funcion:")
-                    Console.WriteLine("0) Gerente")
-                    Console.WriteLine("1) Operario")
-                    Console.WriteLine("2) Administrativo")
-                    Console.Write("Opcion:")
-                    Me.empAux.setTipoEmpleado(Integer.Parse(Console.ReadLine()))
-
-                    Console.Write("Ingresa el sueldo por mes:")
-                    Me.empAux.setSueldoPorMes(Console.ReadLine())
-
-                    Do
-                        If telefonosAux.Count = 0 Then
-                            Console.Write("Ingresa un numero de telefono de contacto:")
-                        Else
-                            Console.Write("Ingresa otro numero de telefono de contacto (N si no tiene mas telefonos):")
-                        End If
-
-                        telefonoAux = Console.ReadLine()
-                        If Not telefonoAux.Equals("N") Then
-                            telefonosAux.Add(telefonoAux)
-                        End If
-                    Loop While Not telefonoAux.Equals("N")
-
-                    Me.empAux.setTelefonos(telefonosAux.ToArray())
-                    empleados.Add(empAux)
-                    empAux = New Empleado()
+                    agregarEmpleado()
                 Case 2
-                    Console.WriteLine("Ingresa cedula del que quieres modificar:")
-                    Dim ci = Console.ReadLine()
-                    For Each empl In empleados
-                        If empl.getCI().Equals(ci) Then
-
-                        End If
-                    Next
+                    modificarEmpleado()
                 Case 3
-
-                Case 4x
+                    eliminarEmpleado()
+                Case 4
                 Case Else
                     Console.WriteLine("Opcion Incorrecta")
                     Thread.Sleep(espera)
-                    administrarPagos()
             End Select
         Loop While Not opcion = 4
     End Function
+    Function modificarEmpleado()
+        ' no es prioridad
+        Dim ci As String
+
+        Console.Write("Ingresa cedula del que quieres modificar:")
+        ci = Console.ReadLine()
+        For Each empl In empleados
+            If empl.getCI().Equals(ci) Then
+
+            End If
+        Next
+    End Function
+    Function eliminarEmpleado()
+        Dim encontrado As Boolean = False
+        Dim ci As String
+
+        Do
+            encontrado = False
+            Console.Write("Ingresa cedula del que quieres eliminar:")
+            ci = Console.ReadLine()
+            For Each empl As Empleado In empleados
+                If empl.getCI().Equals(ci) Then
+                    Me.empAux = empl
+                    encontrado = True
+                End If
+            Next
+            If Not encontrado Then
+                Console.Write("No he encontrado al empleado, quiere reintentar? (S para reintentar):")
+                If Not Console.ReadLine().Equals("S") Then
+                    encontrado = True
+                End If
+            Else
+                empleados.Remove(Me.empAux)
+                Console.WriteLine("Eliminado correctamente")
+                Thread.Sleep(Me.espera)
+            End If
+        Loop While Not encontrado
+    End Function
+    Function agregarEmpleado()
+        Dim telefonosAux As List(Of String) = New List(Of String)
+        Dim telefonoAux = ""
+        Console.Clear()
+        Console.Write("Ingresa el primer nombre:")
+        Me.empAux.setPNom(Console.ReadLine())
+
+        Console.Write("Ingresa el segundo nombre:")
+        Me.empAux.setSNom(Console.ReadLine())
+
+        Console.Write("Ingresa el primer apellido:")
+        Me.empAux.setPApe(Console.ReadLine())
+
+        Console.Write("Ingresa el segundo apellido:")
+        Me.empAux.setSApe(Console.ReadLine())
+
+        'verificar repeticion de cedula
+        Console.Write("Ingresa la cedula:")
+        Me.empAux.setCI(Console.ReadLine())
+
+        Console.Write("Ingresa la calle donde reside:")
+        Me.empAux.setCalle(Console.ReadLine())
+
+        Console.Write("Ingresa el nro de puerta de su residencia:")
+        Me.empAux.setNroPuerta(Integer.Parse(Console.ReadLine()))
+
+        Console.Write("Ingresa el nro de puerta es bis ('Si' si es):")
+        Me.empAux.setEsBis(Console.ReadLine().Equals("Si"))
+
+        Console.WriteLine("Cual será su funcion:")
+        Console.WriteLine("0) Gerente")
+        Console.WriteLine("1) Operario")
+        Console.WriteLine("2) Administrativo")
+        Console.Write("Opcion:")
+        Me.empAux.setTipoEmpleado(Integer.Parse(Console.ReadLine()))
+
+        Console.Write("Ingresa el sueldo por mes:")
+        Me.empAux.setSueldoPorMes(Console.ReadLine())
+
+        Do
+            If telefonosAux.Count = 0 Then
+                Console.Write("Ingresa un numero de telefono de contacto:")
+            Else
+                Console.Write("Ingresa otro numero de telefono de contacto (N si no tiene mas telefonos):")
+            End If
+
+            telefonoAux = Console.ReadLine()
+            If Not telefonoAux.Equals("N") Then
+                telefonosAux.Add(telefonoAux)
+            End If
+        Loop While Not telefonoAux.Equals("N")
+
+        Me.empAux.setTelefonos(telefonosAux.ToArray())
+        empleados.Add(empAux)
+        empAux = New Empleado()
+    End Function
     Function importeSueldos()
+
+        'falta que parezca una tabla y que de los numeros relacionados con una cuenta
 
         Console.Clear()
         Console.WriteLine("//////////////////////////")
@@ -135,15 +174,18 @@ Public Class VentanaMostrar
             Console.Write(empAux.getPNom() & " " & empAux.getSNom() & " ")
             Console.Write(empAux.getPApe() & " " & empAux.getSApe() & " ")
             Console.Write(empAux.getCI() & " " & empAux.getCalle() & " ")
-            Console.Write(empAux.getNroPuerta() & " " & empAux.getEsBis() & " ")
+            Console.Write(empAux.getNroPuerta() & " ")
+            If empAux.getEsBis Then
+                Console.Write("Es Bis")
+            Else
+                Console.Write("No es Bis")
+            End If
+            Console.Write(" ")
             Console.Write(empAux.getSueldoPorMes() & " " & empAux.getTipoEmpleado() & " ")
-            Console
+            Console.WriteLine()
         Next
+        Console.WriteLine()
         Console.Write("Enter para volver:")
         Console.Read()
     End Function
-    Function ingresarNumeroDeContacto()
-
-    End Function
-
 End Class
