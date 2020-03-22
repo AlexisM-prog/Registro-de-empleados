@@ -7,6 +7,11 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Registro", "Registro de emp
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaRegistro", "LogicaRegistro\LogicaRegistro.vbproj", "{AB55D721-C0C6-4B73-B098-D199C15ECCD9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D76297F6-107B-44E8-BE41-71D33F0AE751}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

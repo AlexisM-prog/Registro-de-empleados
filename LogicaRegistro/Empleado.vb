@@ -1,4 +1,6 @@
-﻿Public Class Empleado
+﻿Imports System.IClonable
+Public Class Empleado
+    Implements ICloneable
     Public Shared ReadOnly Gerente As Integer = 0,
         Operario As Integer = 1,
         Administrativo As Integer = 2
@@ -14,7 +16,23 @@
     Private sueldoPorMes As Integer
     Private tipoEmpleado As Integer
     Private telefonos As String()
+    Sub New()
 
+    End Sub
+    Sub New(ByVal empleado As Empleado)
+        Me.PNom = empleado.PNom
+        Me.SNom = empleado.SNom
+        Me.PApe = empleado.PApe
+        Me.SApe = empleado.SApe
+        Me.CI = empleado.CI
+        Me.calle = empleado.calle
+        Me.nroPuerta = empleado.nroPuerta
+        Me.esBis = empleado.esBis
+        Me.sueldoPorMes = empleado.sueldoPorMes
+        Me.tipoEmpleado = empleado.tipoEmpleado
+        Me.telefonos = empleado.telefonos
+
+    End Sub
     Function setPNom(PNom As String)
         Me.PNom = PNom
     End Function
@@ -85,5 +103,9 @@
     End Function
     Function getTipoEmpleado() As Integer
         Return Me.tipoEmpleado
+    End Function
+
+    Public Function Clone() As Object Implements ICloneable.Clone
+        Return DirectCast(Me.MemberwiseClone, Empleado)
     End Function
 End Class

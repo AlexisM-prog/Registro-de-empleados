@@ -1,16 +1,23 @@
 ﻿Imports LogicaRegistro
 Imports System.Threading
 
+
 Public Class VentanaMostrar
     Private empleados As List(Of Empleado)
     Private opcion As Integer
     Private espera As Integer
     Private empAux As Empleado
+    Private filaTablas As Integer() = {1, 11, 22, 34, 46,
+                                        57, 79, 92, 100, 115}
     Sub New()
         empleados = New List(Of Empleado)
         Me.empAux = New Empleado()
         espera = 2000
         opcion = 0
+
+        Console.Title() = "Registro Empleado"
+        Console.SetWindowSize(131, 30)
+
         administrarPagos()
     End Sub
     Function administrarPagos()
@@ -68,7 +75,6 @@ Public Class VentanaMostrar
         Loop While Not opcion = 4
     End Function
     Function modificarEmpleado()
-        ' no es prioridad
         Dim ci As String
 
         Console.Write("Ingresa cedula del que quieres modificar:")
@@ -131,8 +137,8 @@ Public Class VentanaMostrar
         Console.Write("Ingresa el nro de puerta de su residencia:")
         Me.empAux.setNroPuerta(Integer.Parse(Console.ReadLine()))
 
-        Console.Write("Ingresa el nro de puerta es bis ('Si' si es):")
-        Me.empAux.setEsBis(Console.ReadLine().Equals("Si"))
+        Console.Write("Ingresa el nro de puerta es bis ('s' si es):")
+        Me.empAux.setEsBis(Console.ReadLine().Equals("s"))
 
         Console.WriteLine("Cual será su funcion:")
         Console.WriteLine("0) Gerente")
@@ -148,40 +154,87 @@ Public Class VentanaMostrar
             If telefonosAux.Count = 0 Then
                 Console.Write("Ingresa un numero de telefono de contacto:")
             Else
-                Console.Write("Ingresa otro numero de telefono de contacto (N si no tiene mas telefonos):")
+                Console.Write("Ingresa otro numero de telefono de contacto (n si no tiene mas telefonos):")
             End If
 
             telefonoAux = Console.ReadLine()
-            If Not telefonoAux.Equals("N") Then
+            If Not telefonoAux.Equals("n") Then
                 telefonosAux.Add(telefonoAux)
             End If
-        Loop While Not telefonoAux.Equals("N")
+        Loop While Not telefonoAux.Equals("n")
 
         Me.empAux.setTelefonos(telefonosAux.ToArray())
-        empleados.Add(empAux)
+        empleados.Add(empAux.Clone())
         empAux = New Empleado()
     End Function
     Function importeSueldos()
 
-        'falta que parezca una tabla y que de los numeros relacionados con una cuenta
+        'falta que de los numeros relacionados con una cuenta
 
         Console.Clear()
         Console.WriteLine("//////////////////////////")
         Console.WriteLine("Importe a Empleados")
         Console.WriteLine("//////////////////////////")
+        Console.WriteLine()
+        Console.CursorLeft() = filaTablas(0)
+        Console.Write("PNom")
+        Console.CursorLeft() = filaTablas(1)
+        Console.Write("| SNom")
+        Console.CursorLeft() = filaTablas(2)
+        Console.Write("| PApe")
+        Console.CursorLeft() = filaTablas(3)
+        Console.Write("| SApe")
+        Console.CursorLeft() = filaTablas(4)
+        Console.Write("| CI")
+        Console.CursorLeft() = filaTablas(5)
+        Console.Write("| Calle")
+        Console.CursorLeft() = filaTablas(6)
+        Console.Write("| NroPuerta")
+        Console.CursorLeft() = filaTablas(7)
+        Console.Write("| EsBis")
+        Console.CursorLeft() = filaTablas(8)
+        Console.Write("| SueldoPorMes")
+        Console.CursorLeft() = filaTablas(9)
+        Console.Write("| TipoDeEmpleado")
+        Console.CursorTop() = 5
         For i As Integer = 0 To empleados.Count - 1
             empAux = empleados(i)
-            Console.Write(empAux.getPNom() & " " & empAux.getSNom() & " ")
-            Console.Write(empAux.getPApe() & " " & empAux.getSApe() & " ")
-            Console.Write(empAux.getCI() & " " & empAux.getCalle() & " ")
-            Console.Write(empAux.getNroPuerta() & " ")
+            Console.CursorLeft() = filaTablas(0)
+            Console.Write(empAux.getPNom())
+            Console.CursorLeft() = filaTablas(1)
+            Console.Write("| " & empAux.getSNom())
+            Console.CursorLeft() = filaTablas(2)
+            Console.Write("| " & empAux.getPApe())
+            Console.CursorLeft() = filaTablas(3)
+            Console.Write("| " & empAux.getSApe())
+            Console.CursorLeft() = filaTablas(4)
+            Console.Write("| " & empAux.getCI())
+            Console.CursorLeft() = filaTablas(5)
+            Console.Write("| " & empAux.getCalle())
+            Console.CursorLeft() = filaTablas(6)
+            Console.Write("| " & empAux.getNroPuerta())
+            Console.CursorLeft() = filaTablas(7)
+            Console.Write("| ")
             If empAux.getEsBis Then
-                Console.Write("Es Bis")
+                Console.Write("Si")
             Else
-                Console.Write("No es Bis")
+                Console.Write("No")
             End If
-            Console.Write(" ")
-            Console.Write(empAux.getSueldoPorMes() & " " & empAux.getTipoEmpleado() & " ")
+            Console.CursorLeft() = filaTablas(8)
+            Console.Write("| " & empAux.getSueldoPorMes())
+            Console.CursorLeft() = filaTablas(9)
+            Console.Write("| ")
+            Select Case empAux.getTipoEmpleado()
+                Case Empleado.Administrativo
+                    Console.Write("Administrativo")
+                Case Empleado.Gerente
+                    Console.Write("Gerente")
+                Case Empleado.Operario
+                    Console.Write("Operario")
+                Case Else
+                    Console.Write("ERROR")
+            End Select
+
             Console.WriteLine()
         Next
         Console.WriteLine()
