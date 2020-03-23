@@ -117,7 +117,7 @@ Public Class VentanaMostrar
                             empAux.setSApe(Console.ReadLine())
                         Case 2
                             Console.Clear()
-                            Me.imprimirTitulo("MODIFICAR RESIDENCIA")
+                            Me.imprimirTitulo("CAMBIAR RESIDENCIA")
                             Console.Write("Ingresa la calle donde reside:")
                             Me.empAux.setCalle(Console.ReadLine())
 
@@ -128,7 +128,7 @@ Public Class VentanaMostrar
                             Me.empAux.setEsBis(Console.ReadLine().Equals("s"))
                         Case 3
                             Console.Clear()
-                            Me.imprimirTitulo("MODIFICAR EMPLEO")
+                            Me.imprimirTitulo("CAMBIAR EMPLEO")
                             Console.WriteLine("Cual será su funcion:")
                             Console.WriteLine("0) Gerente")
                             Console.WriteLine("1) Operario")
@@ -137,7 +137,7 @@ Public Class VentanaMostrar
                             Me.empAux.setTipoEmpleado(Integer.Parse(Console.ReadLine()))
                         Case 4
                             Console.Clear()
-                            Me.imprimirTitulo("MODIFICAR SALARIO")
+                            Me.imprimirTitulo("CAMBIAR SALARIO")
                             Console.Write("Ingresa el sueldo por mes (se agregara un incremento segun oficio):")
                             Me.empAux.setSueldoPorMes(Console.ReadLine())
                         Case 5
@@ -200,11 +200,11 @@ Public Class VentanaMostrar
         Console.Write("Ingresa la cedula:")
         Do
             If existeCedulaEnEmpleados Then ' la primera vez no se ejecuta porque siempre es false
-                Console.Write("Ingresa la cedula (que no haya sido ingresado):")
+                Console.Write("Ingresa la cedula (que no haya sido ingresado antes):")
             End If
 
             ciAux = Console.ReadLine()
-
+            existeCedulaEnEmpleados = False
             For Each empl As Empleado In empleados
                 If empl.getCI().Equals(ciAux) Then
                     existeCedulaEnEmpleados = True
@@ -253,6 +253,7 @@ Public Class VentanaMostrar
         empAux = New Empleado()
     End Function
     Function importeSueldos()
+        Dim gastoTotalEnEmpleados = 0
 
         'falta que de los numeros relacionados con una cuenta
 
@@ -311,6 +312,11 @@ Public Class VentanaMostrar
             Console.WriteLine()
         Next
         Console.WriteLine()
+        Console.CursorLeft() = filaTabla(8) - 4 ' para que quede alineado con sueldopormes
+        For Each empl As Empleado In empleados
+            gastoTotalEnEmpleados += empl.getSueldoPorMes()
+        Next
+        Console.Write("Gasto:" & gastoTotalEnEmpleados)
         Console.Write("Enter para volver:")
         Console.Read()
     End Function
