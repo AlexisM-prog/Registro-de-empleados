@@ -16,23 +16,7 @@ Public Class Empleado
     Private sueldoPorMes As Integer
     Private tipoEmpleado As Integer
     Private telefonos As String()
-    Sub New()
 
-    End Sub
-    Sub New(ByVal empleado As Empleado)
-        Me.PNom = empleado.PNom
-        Me.SNom = empleado.SNom
-        Me.PApe = empleado.PApe
-        Me.SApe = empleado.SApe
-        Me.CI = empleado.CI
-        Me.calle = empleado.calle
-        Me.nroPuerta = empleado.nroPuerta
-        Me.esBis = empleado.esBis
-        Me.sueldoPorMes = empleado.sueldoPorMes
-        Me.tipoEmpleado = empleado.tipoEmpleado
-        Me.telefonos = empleado.telefonos
-
-    End Sub
     Function setPNom(PNom As String)
         Me.PNom = PNom
     End Function
@@ -107,11 +91,12 @@ Public Class Empleado
     Function getTipoEmpleadoComoString() As String
         Select Case Me.tipoEmpleado
             Case 0
-                Console.Write("Gerente")
+                Return "Gerente"
             Case 1
-                Console.Write("Operario")
+                Return "Operario"
             Case 2
-                Console.Write("Administrativo")
+                Return "Administrativo"
+
         End Select
     End Function
     Public Function Clone() As Object Implements ICloneable.Clone

@@ -28,7 +28,7 @@ Public Class VentanaMostrar
             Console.WriteLine("1) Registro de empleados")
             Console.WriteLine("2) Importe total a pagar por concepto de sueldos.")
             Console.WriteLine("3) Salir")
-            Console.Write("Ingresa opcion:")
+            Console.Write("Elige opcion:")
             Try
                 opcion = Integer.Parse(Console.ReadLine())
             Catch ex As Exception
@@ -48,15 +48,13 @@ Public Class VentanaMostrar
     End Function
     Function regristroEmpleado()
         Do
-
-
             Console.Clear()
             Me.imprimirTitulo("REGISTRO DE EMPLEADOS")
             Console.WriteLine("1) Ingresar")
             Console.WriteLine("2) Modificar")
             Console.WriteLine("3) Eliminar")
             Console.WriteLine("4) Atras")
-            Console.Write("Ingresa opcion:")
+            Console.Write("Elige opcion:")
             Try
                 opcion = Integer.Parse(Console.ReadLine())
             Catch ex As Exception
@@ -78,25 +76,77 @@ Public Class VentanaMostrar
     End Function
     Function modificarEmpleado()
         Dim ci As String
+        Dim continuar As Boolean = True
         Console.Clear()
         Console.Write("Ingresa cedula del que quieres modificar:")
         ci = Console.ReadLine()
         For i As Integer = 0 To empleados.Count - 1
-            If empleados(i).getCI().Equals(ci) Then
-                Me.imprimirTitulo(empleados(i).getPNom() & " " &
-                                  empleados(i).getSNom() & ", " &
-                                  empleados(i).getPApe() & " " &
-                                  empleados(i).getSApe() & " " & "(" &
-                                  empleados(i).getTipoEmpleadoComoString())
+            empAux = empleados(i)
+            If empAux.getCI().Equals(ci) And continuar Then
 
+                Do
+                    Console.Clear()
+                    Me.imprimirTitulo("QUE MODIFICO DE " & empAux.getPNom() & " " &
+                                  empAux.getSNom() & ", " &
+                                  empAux.getPApe() & " " &
+                                  empAux.getSApe() & " " & "(" &
+                                  empAux.getTipoEmpleadoComoString() & ")?")
+                    Console.WriteLine("1) Nombre")
+                    Console.WriteLine("2) Residencia")
+                    Console.WriteLine("3) Empleo")
+                    Console.WriteLine("4) Salario")
+                    Console.WriteLine("5) Volver")
+                    Console.Write("Elige opcion:")
+                    opcion = Integer.Parse(Console.ReadLine())
 
-                Console.WriteLine()
+                    Select Case opcion
+                        Case 1
+                            Console.Clear()
+                            Me.imprimirTitulo("MODIFICAR NOMBRE")
+                            Console.Write("Ingrese primer nombre:")
+                            empAux.setPNom(Console.ReadLine())
+
+                            Console.Write("Ingrese segundo nombre:")
+                            empAux.setSNom(Console.ReadLine())
+
+                            Console.Write("Ingrese primer apellido:")
+                            empAux.setPApe(Console.ReadLine())
+
+                            Console.Write("Ingrese segundo nombre:")
+                            empAux.setSApe(Console.ReadLine())
+                        Case 2
+                            Console.Clear()
+                            Me.imprimirTitulo("MODIFICAR RESIDENCIA")
+                            Console.Write("Ingresa la calle donde reside:")
+                            Me.empAux.setCalle(Console.ReadLine())
+
+                            Console.Write("Ingresa el nro de puerta de su residencia:")
+                            Me.empAux.setNroPuerta(Integer.Parse(Console.ReadLine()))
+
+                            Console.Write("Ingresa el nro de puerta es bis ('s' si es):")
+                            Me.empAux.setEsBis(Console.ReadLine().Equals("s"))
+                        Case 3
+                            Console.Clear()
+                            Me.imprimirTitulo("MODIFICAR EMPLEO")
+                            Console.WriteLine("Cual será su funcion:")
+                            Console.WriteLine("0) Gerente")
+                            Console.WriteLine("1) Operario")
+                            Console.WriteLine("2) Administrativo")
+                            Console.Write("Elige opcion:")
+                            Me.empAux.setTipoEmpleado(Integer.Parse(Console.ReadLine()))
+                        Case 4
+                            Console.Clear()
+                            Me.imprimirTitulo("MODIFICAR SALARIO")
+                            Console.Write("Ingresa el sueldo por mes (se agregara un incremento segun oficio):")
+                            Me.empAux.setSueldoPorMes(Console.ReadLine())
+                        Case 5
+                        Case Else
+                            Console.WriteLine("Opcion Incorrecta")
+                            Thread.Sleep(espera)
+                    End Select
+                Loop While Not opcion = 5
             End If
         Next
-        Console.Write("Elije opcion:")
-        opcion = Console.Read()
-
-
     End Function
     Function eliminarEmpleado()
         Dim encontrado As Boolean = False
@@ -104,6 +154,8 @@ Public Class VentanaMostrar
 
         Do
             encontrado = False
+            Console.Clear()
+            Me.imprimirTitulo("ELIMINAR EMPLEADO")
             Console.Write("Ingresa cedula del que quieres eliminar:")
             ci = Console.ReadLine()
             For Each empl As Empleado In empleados
@@ -113,8 +165,8 @@ Public Class VentanaMostrar
                 End If
             Next
             If Not encontrado Then
-                Console.Write("No he encontrado al empleado, quiere reintentar? (S para reintentar):")
-                If Not Console.Read().Equals("S") Then
+                Console.Write("No he encontrado al empleado, quiere reintentar? ('s' para reintentar):")
+                If Not Console.Read().Equals("s") Then
                     encontrado = True
                 End If
             Else
@@ -130,6 +182,7 @@ Public Class VentanaMostrar
         empAux = New Empleado()
 
         Console.Clear()
+        Me.imprimirTitulo("AGREGA EMPLEADO")
         Console.Write("Ingresa el primer nombre:")
         Me.empAux.setPNom(Console.ReadLine())
 
@@ -144,6 +197,7 @@ Public Class VentanaMostrar
 
         'verificar repeticion de cedula
         Console.Write("Ingresa la cedula:")
+        Me.ci = Console.ReadLine()
         Me.empAux.setCI(Console.ReadLine())
 
         Console.Write("Ingresa la calle donde reside:")
@@ -159,7 +213,7 @@ Public Class VentanaMostrar
         Console.WriteLine("0) Gerente")
         Console.WriteLine("1) Operario")
         Console.WriteLine("2) Administrativo")
-        Console.Write("Opcion:")
+        Console.Write("Elige opcion:")
         Me.empAux.setTipoEmpleado(Integer.Parse(Console.ReadLine()))
 
         Console.Write("Ingresa el sueldo por mes:")
@@ -169,14 +223,14 @@ Public Class VentanaMostrar
             If telefonosAux.Count = 0 Then
                 Console.Write("Ingresa un numero de telefono de contacto:")
             Else
-                Console.Write("Ingresa otro numero de telefono de contacto (n si no tiene mas telefonos):")
+                Console.Write("Ingresa otro numero de telefono de contacto ('n' si no tiene mas telefonos):")
             End If
 
             telefonoAux = Console.ReadLine()
-            If Not telefonoAux.Equals("n") Then
+            If Not telefonoAux.Equals("n") Or telefonosAux.Count = 0 Then
                 telefonosAux.Add(telefonoAux)
             End If
-        Loop While Not telefonoAux.Equals("n")
+        Loop While Not telefonoAux.Equals("n") Or telefonosAux.Count = 0
 
         Me.empAux.setTelefonos(telefonosAux.ToArray())
         empleados.Add(empAux.Clone())
@@ -187,7 +241,7 @@ Public Class VentanaMostrar
         'falta que de los numeros relacionados con una cuenta
 
         Console.Clear()
-        Me.imprimirTitulo("Importe a Empleados")
+        Me.imprimirTitulo("IMPORTE A EMPLEADOS")
         Console.WriteLine()
         Console.CursorLeft() = filaTablas(0)
         Console.Write("PNom")
