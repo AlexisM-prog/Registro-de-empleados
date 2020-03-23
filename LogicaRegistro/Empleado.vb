@@ -104,7 +104,16 @@ Public Class Empleado
     Function getTipoEmpleado() As Integer
         Return Me.tipoEmpleado
     End Function
-
+    Function getTipoEmpleadoComoString() As String
+        Select Case Me.tipoEmpleado
+            Case 0
+                Console.Write("Gerente")
+            Case 1
+                Console.Write("Operario")
+            Case 2
+                Console.Write("Administrativo")
+        End Select
+    End Function
     Public Function Clone() As Object Implements ICloneable.Clone
         Return DirectCast(Me.MemberwiseClone, Empleado)
     End Function

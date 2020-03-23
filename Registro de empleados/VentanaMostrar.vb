@@ -24,7 +24,7 @@ Public Class VentanaMostrar
 
         Do
             Console.Clear()
-            Console.WriteLine("ADMINISTRADOR DE EMPLEADOS")
+            Me.imprimirTitulo("ADMINISTRADOR DE EMPLEADOS")
             Console.WriteLine("1) Registro de empleados")
             Console.WriteLine("2) Importe total a pagar por concepto de sueldos.")
             Console.WriteLine("3) Salir")
@@ -48,8 +48,10 @@ Public Class VentanaMostrar
     End Function
     Function regristroEmpleado()
         Do
+
+
             Console.Clear()
-            Console.WriteLine("REGISTRO DE EMPLEADOS")
+            Me.imprimirTitulo("REGISTRO DE EMPLEADOS")
             Console.WriteLine("1) Ingresar")
             Console.WriteLine("2) Modificar")
             Console.WriteLine("3) Eliminar")
@@ -76,14 +78,25 @@ Public Class VentanaMostrar
     End Function
     Function modificarEmpleado()
         Dim ci As String
-
+        Console.Clear()
         Console.Write("Ingresa cedula del que quieres modificar:")
         ci = Console.ReadLine()
-        For Each empl In empleados
-            If empl.getCI().Equals(ci) Then
+        For i As Integer = 0 To empleados.Count - 1
+            If empleados(i).getCI().Equals(ci) Then
+                Me.imprimirTitulo(empleados(i).getPNom() & " " &
+                                  empleados(i).getSNom() & ", " &
+                                  empleados(i).getPApe() & " " &
+                                  empleados(i).getSApe() & " " & "(" &
+                                  empleados(i).getTipoEmpleadoComoString())
 
+
+                Console.WriteLine()
             End If
         Next
+        Console.Write("Elije opcion:")
+        opcion = Console.Read()
+
+
     End Function
     Function eliminarEmpleado()
         Dim encontrado As Boolean = False
@@ -101,7 +114,7 @@ Public Class VentanaMostrar
             Next
             If Not encontrado Then
                 Console.Write("No he encontrado al empleado, quiere reintentar? (S para reintentar):")
-                If Not Console.ReadLine().Equals("S") Then
+                If Not Console.Read().Equals("S") Then
                     encontrado = True
                 End If
             Else
@@ -114,6 +127,8 @@ Public Class VentanaMostrar
     Function agregarEmpleado()
         Dim telefonosAux As List(Of String) = New List(Of String)
         Dim telefonoAux = ""
+        empAux = New Empleado()
+
         Console.Clear()
         Console.Write("Ingresa el primer nombre:")
         Me.empAux.setPNom(Console.ReadLine())
@@ -172,9 +187,7 @@ Public Class VentanaMostrar
         'falta que de los numeros relacionados con una cuenta
 
         Console.Clear()
-        Console.WriteLine("//////////////////////////")
-        Console.WriteLine("Importe a Empleados")
-        Console.WriteLine("//////////////////////////")
+        Me.imprimirTitulo("Importe a Empleados")
         Console.WriteLine()
         Console.CursorLeft() = filaTablas(0)
         Console.Write("PNom")
@@ -196,7 +209,7 @@ Public Class VentanaMostrar
         Console.Write("| SueldoPorMes")
         Console.CursorLeft() = filaTablas(9)
         Console.Write("| TipoDeEmpleado")
-        Console.CursorTop() = 5
+        Console.CursorTop() = 3
         For i As Integer = 0 To empleados.Count - 1
             empAux = empleados(i)
             Console.CursorLeft() = filaTablas(0)
@@ -224,21 +237,19 @@ Public Class VentanaMostrar
             Console.Write("| " & empAux.getSueldoPorMes())
             Console.CursorLeft() = filaTablas(9)
             Console.Write("| ")
-            Select Case empAux.getTipoEmpleado()
-                Case Empleado.Administrativo
-                    Console.Write("Administrativo")
-                Case Empleado.Gerente
-                    Console.Write("Gerente")
-                Case Empleado.Operario
-                    Console.Write("Operario")
-                Case Else
-                    Console.Write("ERROR")
-            End Select
-
+            Console.Write(empAux.getTipoEmpleadoComoString())
             Console.WriteLine()
         Next
         Console.WriteLine()
         Console.Write("Enter para volver:")
         Console.Read()
+    End Function
+    Function imprimirTitulo(titulo As String)
+        Console.BackgroundColor = ConsoleColor.Red
+        Console.ForegroundColor = ConsoleColor.White
+        Console.CursorLeft() = 20
+        Console.WriteLine(titulo)
+        Console.BackgroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.Yellow
     End Function
 End Class
