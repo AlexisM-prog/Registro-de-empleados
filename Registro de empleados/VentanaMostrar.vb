@@ -19,7 +19,7 @@ Public Class VentanaMostrar
         opcion = 0
 
         Console.Title() = "Registro Empleado"
-        Console.SetWindowSize(131, 30)
+        Console.SetWindowSize(132, 30)
 
         administrarPagos()
     End Sub
@@ -254,9 +254,6 @@ Public Class VentanaMostrar
     End Function
     Function importeSueldos()
         Dim gastoTotalEnEmpleados = 0
-
-        'falta que de los numeros relacionados con una cuenta
-
         Console.Clear()
         Me.imprimirTitulo("IMPORTE A EMPLEADOS")
         Console.WriteLine()
@@ -312,11 +309,11 @@ Public Class VentanaMostrar
             Console.WriteLine()
         Next
         Console.WriteLine()
-        Console.CursorLeft() = filaTabla(8) - 4 ' para que quede alineado con sueldopormes
+        Console.CursorLeft() = filaTabla(8) - 5 ' para que quede alineado con sueldopormes
         For Each empl As Empleado In empleados
             gastoTotalEnEmpleados += empl.getSueldoPorMes()
         Next
-        Console.Write("Gasto:" & gastoTotalEnEmpleados)
+        Console.WriteLine("Gasto: " & gastoTotalEnEmpleados)
         Console.Write("Enter para volver:")
         Console.Read()
     End Function

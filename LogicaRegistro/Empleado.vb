@@ -96,7 +96,6 @@ Public Class Empleado
                 Return "Operario"
             Case 2
                 Return "Administrativo"
-
         End Select
     End Function
     Public Function Clone() As Object Implements ICloneable.Clone
