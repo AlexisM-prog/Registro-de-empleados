@@ -5,17 +5,17 @@ Imports System.Threading
 Public Class VentanaMostrar
     Private empleados As List(Of Empleado)
     Private opcion As Integer
-    Private tiempoEsperaAux As Integer
+    Private tiempoEsperaPorDefecto As Integer
 
     Private empAux As Empleado
     Private ciAux As String
 
-    Private filaTablas As Integer() = {1, 11, 22, 34, 46,
+    Private filaTabla As Integer() = {1, 11, 22, 34, 46,
                                         57, 79, 92, 100, 115}
     Sub New()
         empleados = New List(Of Empleado)
         Me.empAux = New Empleado()
-        tiempoEsperaAux = 2000
+        tiempoEsperaPorDefecto = 2000
         opcion = 0
 
         Console.Title() = "Registro Empleado"
@@ -45,7 +45,7 @@ Public Class VentanaMostrar
                 Case 3
                 Case Else
                     Console.WriteLine("Opcion Incorrecta")
-                    Thread.Sleep(tiempoEsperaAux)
+                    Thread.Sleep(tiempoEsperaPorDefecto)
             End Select
         Loop While Not opcion = 3
     End Function
@@ -73,18 +73,17 @@ Public Class VentanaMostrar
                 Case 4
                 Case Else
                     Console.WriteLine("Opcion Incorrecta")
-                    Thread.Sleep(tiempoEsperaAux)
+                    Thread.Sleep(tiempoEsperaPorDefecto)
             End Select
         Loop While Not opcion = 4
     End Function
     Function modificarEmpleado()
-        Dim continuar As Boolean = True
         Console.Clear()
         Console.Write("Ingresa cedula del que quieres modificar:")
         ciAux = Console.ReadLine()
         For i As Integer = 0 To empleados.Count - 1
             empAux = empleados(i)
-            If empAux.getCI().Equals(ciAux) And continuar Then
+            If empAux.getCI().Equals(ciAux) Then
 
                 Do
                     Console.Clear()
@@ -144,7 +143,7 @@ Public Class VentanaMostrar
                         Case 5
                         Case Else
                             Console.WriteLine("Opcion Incorrecta")
-                            Thread.Sleep(tiempoEsperaAux)
+                            Thread.Sleep(tiempoEsperaPorDefecto)
                     End Select
                 Loop While Not opcion = 5
             End If
@@ -158,28 +157,30 @@ Public Class VentanaMostrar
             Me.imprimirTitulo("ELIMINAR EMPLEADO")
             Console.Write("Ingresa cedula del que quieres eliminar:")
             ciAux = Console.ReadLine()
+
+            ' busca en empleados una persona con la misma cedula
             For Each empl As Empleado In empleados
                 If empl.getCI().Equals(ciAux) Then
                     Me.empAux = empl
                     encontrado = True
                 End If
             Next
-            If Not encontrado Then
+            If encontrado Then ' si lo encuentra lo elimina
+                empleados.Remove(Me.empAux)
+                Console.WriteLine("Eliminado correctamente")
+                Thread.Sleep(Me.tiempoEsperaPorDefecto)
+            Else ' si no lo encuentra da la opcion de reintentar 
                 Console.Write("No he encontrado al empleado, quiere reintentar? ('s' para reintentar):")
                 If Not Console.Read().Equals("s") Then
                     encontrado = True
                 End If
-            Else
-                empleados.Remove(Me.empAux)
-                Console.WriteLine("Eliminado correctamente")
-                Thread.Sleep(Me.tiempoEsperaAux)
             End If
         Loop While Not encontrado
     End Function
     Function agregarEmpleado()
         Dim telefonosAux As List(Of String) = New List(Of String)
         Dim telefonoAux = ""
-        Dim existeCedulaEnEmpleados As Boolean
+        Dim existeCedulaEnEmpleados As Boolean = False
         empAux = New Empleado()
 
         Console.Clear()
@@ -196,11 +197,14 @@ Public Class VentanaMostrar
         Console.Write("Ingresa el segundo apellido:")
         Me.empAux.setSApe(Console.ReadLine())
 
+        Console.Write("Ingresa la cedula:")
         Do
-            Console.Write("Ingresa la cedula:")
+            If existeCedulaEnEmpleados Then ' la primera vez no se ejecuta porque siempre es false
+                Console.Write("Ingresa la cedula (que no haya sido ingresado):")
+            End If
+
             ciAux = Console.ReadLine()
 
-            existeCedulaEnEmpleados = False
             For Each empl As Empleado In empleados
                 If empl.getCI().Equals(ciAux) Then
                     existeCedulaEnEmpleados = True
@@ -208,8 +212,6 @@ Public Class VentanaMostrar
             Next
             If Not existeCedulaEnEmpleados Then
                 Me.empAux.setCI(ciAux)
-            Else
-                Console.WriteLine()
             End If
         Loop While existeCedulaEnEmpleados
 
@@ -257,53 +259,53 @@ Public Class VentanaMostrar
         Console.Clear()
         Me.imprimirTitulo("IMPORTE A EMPLEADOS")
         Console.WriteLine()
-        Console.CursorLeft() = filaTablas(0)
+        Console.CursorLeft() = filaTabla(0)
         Console.Write("PNom")
-        Console.CursorLeft() = filaTablas(1)
+        Console.CursorLeft() = filaTabla(1)
         Console.Write("| SNom")
-        Console.CursorLeft() = filaTablas(2)
+        Console.CursorLeft() = filaTabla(2)
         Console.Write("| PApe")
-        Console.CursorLeft() = filaTablas(3)
+        Console.CursorLeft() = filaTabla(3)
         Console.Write("| SApe")
-        Console.CursorLeft() = filaTablas(4)
+        Console.CursorLeft() = filaTabla(4)
         Console.Write("| CI")
-        Console.CursorLeft() = filaTablas(5)
+        Console.CursorLeft() = filaTabla(5)
         Console.Write("| Calle")
-        Console.CursorLeft() = filaTablas(6)
+        Console.CursorLeft() = filaTabla(6)
         Console.Write("| NroPuerta")
-        Console.CursorLeft() = filaTablas(7)
+        Console.CursorLeft() = filaTabla(7)
         Console.Write("| EsBis")
-        Console.CursorLeft() = filaTablas(8)
+        Console.CursorLeft() = filaTabla(8)
         Console.Write("| SueldoPorMes")
-        Console.CursorLeft() = filaTablas(9)
+        Console.CursorLeft() = filaTabla(9)
         Console.Write("| TipoDeEmpleado")
-        Console.CursorTop() = 3
+        Console.CursorTop() = 3 ' Si pongo Console.WriteLine() da problemas
         For i As Integer = 0 To empleados.Count - 1
             empAux = empleados(i)
-            Console.CursorLeft() = filaTablas(0)
+            Console.CursorLeft() = filaTabla(0)
             Console.Write(empAux.getPNom())
-            Console.CursorLeft() = filaTablas(1)
+            Console.CursorLeft() = filaTabla(1)
             Console.Write("| " & empAux.getSNom())
-            Console.CursorLeft() = filaTablas(2)
+            Console.CursorLeft() = filaTabla(2)
             Console.Write("| " & empAux.getPApe())
-            Console.CursorLeft() = filaTablas(3)
+            Console.CursorLeft() = filaTabla(3)
             Console.Write("| " & empAux.getSApe())
-            Console.CursorLeft() = filaTablas(4)
+            Console.CursorLeft() = filaTabla(4)
             Console.Write("| " & empAux.getCI())
-            Console.CursorLeft() = filaTablas(5)
+            Console.CursorLeft() = filaTabla(5)
             Console.Write("| " & empAux.getCalle())
-            Console.CursorLeft() = filaTablas(6)
+            Console.CursorLeft() = filaTabla(6)
             Console.Write("| " & empAux.getNroPuerta())
-            Console.CursorLeft() = filaTablas(7)
+            Console.CursorLeft() = filaTabla(7)
             Console.Write("| ")
             If empAux.getEsBis Then
                 Console.Write("Si")
             Else
                 Console.Write("No")
             End If
-            Console.CursorLeft() = filaTablas(8)
+            Console.CursorLeft() = filaTabla(8)
             Console.Write("| " & empAux.getSueldoPorMes())
-            Console.CursorLeft() = filaTablas(9)
+            Console.CursorLeft() = filaTabla(9)
             Console.Write("| ")
             Console.Write(empAux.getTipoEmpleadoComoString())
             Console.WriteLine()
