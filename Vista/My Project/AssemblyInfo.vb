@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("LogicaDatos")>
+<Assembly: AssemblyTitle("Vista")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("LogicaDatos")>
+<Assembly: AssemblyProduct("Vista")>
 <Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-<Assembly: Guid("91f0a0cb-d669-400f-9a69-14706a3e52da")>
+<Assembly: Guid("f04c7944-eab1-462c-9f04-f5ce0309f44b")>
 
 ' La información de versión de un ensamblado consta de los cuatro valores siguientes:
 '

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB55D721-C0C6-4B73-B098-D199C15ECCD9}</ProjectGuid>
+    <ProjectGuid>{990869A1-EDE2-4BA1-9485-E155DC0A46D0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>LogicaRegistro</RootNamespace>
-    <AssemblyName>LogicaRegistro</AssemblyName>
+    <RootNamespace>Vista</RootNamespace>
+    <AssemblyName>Vista</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -19,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>LogicaRegistro.xml</DocumentationFile>
+    <DocumentationFile>Vista.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>LogicaRegistro.xml</DocumentationFile>
+    <DocumentationFile>Vista.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -64,7 +64,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Empleado.vb" />
+    <Compile Include="VistaMenuGeneral.vb" />
+    <Compile Include="VistaImporteSueldos.vb" />
+    <Compile Include="VistaMenuAgregarEmpleado.vb" />
+    <Compile Include="VistaMenuModificarEmpleado.vb" />
+    <Compile Include="VistaMenuRegistroEmpleado.vb" />
+    <Compile Include="VistaMenuPrincipal.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -99,6 +104,12 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogicaDatos\LogicaDatos.vbproj">
+      <Project>{FCDE2242-FE03-4B4E-A3E0-726B59D641B1}</Project>
+      <Name>LogicaDatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
