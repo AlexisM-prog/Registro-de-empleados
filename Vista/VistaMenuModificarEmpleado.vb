@@ -13,14 +13,14 @@ Public Class VistaMenuModificarEmpleado
         ciAux = Console.ReadLine()
         For i As Integer = 0 To empleados.Count - 1
             empAux = empleados(i)
-            If empAux.getCI().Equals(ciAux) Then
+            If empAux.CI.Equals(ciAux) Then
 
                 Do
                     Console.Clear()
-                    Me.imprimirTitulo("QUE MODIFICO DE " & empAux.getPNom() & " " &
-                                  empAux.getSNom() & ", " &
-                                  empAux.getPApe() & " " &
-                                  empAux.getSApe() & " " & "(" &
+                    Me.imprimirTitulo("QUE MODIFICO DE " & empAux.PNom & " " &
+                                  empAux.SNom & ", " &
+                                  empAux.PApe & " " &
+                                  empAux.SApe & " " & "(" &
                                   empAux.getTipoEmpleadoComoString() & ")?")
                     Console.WriteLine("1) Nombre")
                     Console.WriteLine("2) Residencia")
@@ -36,28 +36,29 @@ Public Class VistaMenuModificarEmpleado
                             Console.Clear()
                             Me.imprimirTitulo("MODIFICAR NOMBRE")
                             Console.Write("Ingrese primer nombre:")
-                            empAux.setPNom(Console.ReadLine())
+                            empAux.PNom = Console.ReadLine()
 
                             Console.Write("Ingrese segundo nombre:")
-                            empAux.setSNom(Console.ReadLine())
+                            empAux.SNom = Console.ReadLine()
 
                             Console.Write("Ingrese primer apellido:")
-                            empAux.setPApe(Console.ReadLine())
+                            empAux.PApe = Console.ReadLine()
 
                             Console.Write("Ingrese segundo nombre:")
-                            empAux.setSApe(Console.ReadLine())
+                            empAux.SApe = Console.ReadLine()
                         Case 2
                             Console.Clear()
                             Me.imprimirTitulo("CAMBIAR RESIDENCIA")
                             Console.Write("Ingresa la calle donde reside:")
-                            Me.empAux.setCalle(Console.ReadLine())
+                            Me.empAux.calle = Console.ReadLine()
 
                             Console.Write("Ingresa el nro de puerta de su residencia:")
-                            Me.empAux.setNroPuerta(Integer.Parse(Console.ReadLine()))
+                            Me.empAux.nroPuerta = Integer.Parse(Console.ReadLine())
 
                             Console.Write("Ingresa el nro de puerta es bis ('s' si es):")
-                            Me.empAux.setEsBis(Console.ReadLine().Equals("s"))
+                            Me.empAux.esBis = Console.ReadLine().Equals("s")
                         Case 3
+                            ' verificar utilidad
                             Console.Clear()
                             Me.imprimirTitulo("CAMBIAR EMPLEO")
                             Console.WriteLine("Cual será su funcion:")
@@ -65,23 +66,23 @@ Public Class VistaMenuModificarEmpleado
                             Console.WriteLine("1) Operario")
                             Console.WriteLine("2) Administrativo")
                             Console.Write("Elige opcion:")
-                            Me.empAux.setTipoEmpleado(Integer.Parse(Console.ReadLine()))
+                            Me.empAux.tipoEmpleado = Integer.Parse(Console.ReadLine())
                         Case 4
                             Console.Clear()
                             Me.imprimirTitulo("CAMBIAR SALARIO")
                             Console.Write("Ingresa el sueldo por mes (se agregara un incremento segun oficio):")
-                            Me.empAux.setSueldoPorMes(Console.ReadLine())
+                            Me.empAux.sueldoPorMes = Console.ReadLine()
                         Case 5
                             Console.Clear()
                             Me.imprimirTitulo("CAMBIAR ESTADO ACTIVIDAD")
-                            Console.Write("El estado actual de " & Me.empAux.getPNom() & " es ")
-                            If Me.empAux.getActivo() Then
+                            Console.Write("El estado actual de " & Me.empAux.PNom & " es ")
+                            If Me.empAux.activo Then
                                 Console.WriteLine("activo")
                             Else
                                 Console.WriteLine("inactivo")
                             End If
                             Console.Write("Cambiar estado a actividad(a: activo, i:inactivo):")
-                            Me.empAux.setActivo(Console.ReadLine().Equals("a"))
+                            Me.empAux.activo = Console.ReadLine().Equals("a")
                         Case 6
                         Case Else
                             Console.WriteLine("Opcion Incorrecta")

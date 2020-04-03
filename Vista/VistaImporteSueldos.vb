@@ -42,34 +42,34 @@ Public Class VistaImporteSueldos
         For i As Integer = 0 To empleados.Count - 1
             empAux = empleados(i)
             Console.CursorLeft() = filaTabla(0)
-            Console.Write(empAux.getPNom())
+            Console.Write(empAux.PNom)
             Console.CursorLeft() = filaTabla(1)
-            Console.Write("| " & empAux.getSNom())
+            Console.Write("| " & empAux.SNom)
             Console.CursorLeft() = filaTabla(2)
-            Console.Write("| " & empAux.getPApe())
+            Console.Write("| " & empAux.PApe)
             Console.CursorLeft() = filaTabla(3)
-            Console.Write("| " & empAux.getSApe())
+            Console.Write("| " & empAux.SApe)
             Console.CursorLeft() = filaTabla(4)
-            Console.Write("| " & empAux.getCI())
+            Console.Write("| " & empAux.CI)
             Console.CursorLeft() = filaTabla(5)
-            Console.Write("| " & empAux.getCalle())
+            Console.Write("| " & empAux.calle)
             Console.CursorLeft() = filaTabla(6)
-            Console.Write("| " & empAux.getNroPuerta())
+            Console.Write("| " & empAux.nroPuerta)
             Console.CursorLeft() = filaTabla(7)
             Console.Write("| ")
-            If empAux.getEsBis() Then
+            If empAux.esBis Then
                 Console.Write("Si")
             Else
                 Console.Write("No")
             End If
             Console.CursorLeft() = filaTabla(8)
-            Console.Write("| " & empAux.getSueldoPorMes())
+            Console.Write("| " & empAux.sueldoPorMes)
             Console.CursorLeft() = filaTabla(9)
             Console.Write("| ")
             Console.Write(empAux.getTipoEmpleadoComoString())
             Console.CursorLeft() = filaTabla(10)
             Console.Write("| ")
-            If empAux.getActivo() Then
+            If empAux.activo Then
                 Console.Write("Si")
             Else
                 Console.Write("No")
@@ -79,8 +79,8 @@ Public Class VistaImporteSueldos
         Console.WriteLine()
         Console.CursorLeft() = filaTabla(8) - 5 ' para que quede alineado con sueldopormes
         For Each empl As Empleado In empleados
-            If empl.getActivo() Then
-                gastoTotalEnEmpleados += empl.getSueldoPorMes()
+            If empl.activo Then
+                gastoTotalEnEmpleados += empl.sueldoPorMes
             End If
         Next
         Console.WriteLine("Gasto: " & gastoTotalEnEmpleados)
