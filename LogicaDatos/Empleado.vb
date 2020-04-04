@@ -1,9 +1,8 @@
 ﻿Imports System.IClonable
 Public Class Empleado
     Implements ICloneable
-    Public Shared ReadOnly Gerente As Integer = 0,
-        Operario As Integer = 1,
-        Administrativo As Integer = 2
+
+    Protected _sueldoPorMes As Integer
 
     Property PNom As String
     Property SNom As String
@@ -13,31 +12,19 @@ Public Class Empleado
     Property calle As String
     Property nroPuerta As Integer
     Property esBis As Boolean
-    Property sueldoPorMes As Integer
-    Property tipoEmpleado As Integer
+    Public Property sueldoPorMes As Integer
+        Get
+            Return _sueldoPorMes
+        End Get
+        Set
+            _sueldoPorMes = Value
+        End Set
+    End Property
     Property telefonos As String()
     Property activo As Boolean
-    Function setSueldoPorMes(_sueldoPorMes As Integer)
-        Select Case tipoEmpleado
-            Case 0 'Es Gerente
-                _sueldoPorMes *= 1.97 '1 + 0.97
-            Case 1 'Es Operario
-                _sueldoPorMes *= 1.38
-            Case 2 'Es administrativo
-                _sueldoPorMes *= 1.27
-        End Select
-        Me.sueldoPorMes = _sueldoPorMes
-    End Function
 
-    Function getTipoEmpleadoComoString() As String
-        Select Case Me.tipoEmpleado
-            Case 0
-                Return "Gerente"
-            Case 1
-                Return "Operario"
-            Case 2
-                Return "Administrativo"
-        End Select
+    Overridable Function getProfesionComoString() As String
+        Return "NULL"
     End Function
     Public Function Clone() As Object Implements ICloneable.Clone
         Return DirectCast(Me.MemberwiseClone, Empleado)

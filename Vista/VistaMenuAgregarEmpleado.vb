@@ -11,10 +11,24 @@ Public Class VistaMenuAgregarEmpleado
         Dim telefonosAux As List(Of String) = New List(Of String)
         Dim telefonoAux = ""
         Dim existeCedulaEnEmpleados As Boolean = False
-        empAux = New Empleado()
 
         Console.Clear()
         Me.imprimirTitulo("AGREGA EMPLEADO")
+
+        Console.WriteLine("Cual será su funcion:")
+        Console.WriteLine("0) Gerente")
+        Console.WriteLine("1) Operario")
+        Console.WriteLine("2) Administrativo")
+        Console.Write("Elige opcion:")
+        Select Case Integer.Parse(Console.ReadLine())
+            Case 0
+                empAux = New Gerente()
+            Case 1
+                empAux = New Operario()
+            Case 2
+                empAux = New Administrativo()
+        End Select
+
         Console.Write("Ingresa el primer nombre:")
         Me.empAux.PNom = Console.ReadLine()
 
@@ -54,13 +68,6 @@ Public Class VistaMenuAgregarEmpleado
 
         Console.Write("Ingresa el nro de puerta es bis ('s' si es):")
         Me.empAux.esBis = Console.ReadLine().Equals("s")
-
-        Console.WriteLine("Cual será su funcion:")
-        Console.WriteLine("0) Gerente")
-        Console.WriteLine("1) Operario")
-        Console.WriteLine("2) Administrativo")
-        Console.Write("Elige opcion:")
-        Me.empAux.tipoEmpleado = Integer.Parse(Console.ReadLine())
 
         Console.Write("Ingresa el sueldo por mes:")
         Me.empAux.sueldoPorMes = Console.ReadLine()

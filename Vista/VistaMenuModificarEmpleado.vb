@@ -21,7 +21,7 @@ Public Class VistaMenuModificarEmpleado
                                   empAux.SNom & ", " &
                                   empAux.PApe & " " &
                                   empAux.SApe & " " & "(" &
-                                  empAux.getTipoEmpleadoComoString() & ")?")
+                                  empAux.getProfesionComoString() & ")?")
                     Console.WriteLine("1) Nombre")
                     Console.WriteLine("2) Residencia")
                     Console.WriteLine("3) Empleo")
@@ -59,14 +59,14 @@ Public Class VistaMenuModificarEmpleado
                             Me.empAux.esBis = Console.ReadLine().Equals("s")
                         Case 3
                             ' verificar utilidad
-                            Console.Clear()
-                            Me.imprimirTitulo("CAMBIAR EMPLEO")
-                            Console.WriteLine("Cual será su funcion:")
-                            Console.WriteLine("0) Gerente")
-                            Console.WriteLine("1) Operario")
-                            Console.WriteLine("2) Administrativo")
-                            Console.Write("Elige opcion:")
-                            Me.empAux.tipoEmpleado = Integer.Parse(Console.ReadLine())
+                            ' Console.Clear()
+                            ' Me.imprimirTitulo("CAMBIAR EMPLEO")
+                            ' Console.WriteLine("Cual será su funcion:")
+                            ' Console.WriteLine("0) Gerente")
+                            ' Console.WriteLine("1) Operario")
+                            ' Console.WriteLine("2) Administrativo")
+                            ' Console.Write("Elige opcion:")
+                            ' Me.empAux.tipoEmpleado = Integer.Parse(Console.ReadLine())
                         Case 4
                             Console.Clear()
                             Me.imprimirTitulo("CAMBIAR SALARIO")

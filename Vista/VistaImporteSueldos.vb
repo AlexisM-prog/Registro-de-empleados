@@ -66,7 +66,7 @@ Public Class VistaImporteSueldos
             Console.Write("| " & empAux.sueldoPorMes)
             Console.CursorLeft() = filaTabla(9)
             Console.Write("| ")
-            Console.Write(empAux.getTipoEmpleadoComoString())
+            Console.Write(empAux.getProfesionComoString())
             Console.CursorLeft() = filaTabla(10)
             Console.Write("| ")
             If empAux.activo Then
