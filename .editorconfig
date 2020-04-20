@@ -2,3 +2,6 @@
 
 # BC42105: La función no devuelve un valor en todas las rutas de código
 dotnet_diagnostic.BC42105.severity = none
+
+# IDE0059: Asignación innecesaria de un valor
+visual_basic_style_unused_value_assignment_preference = unused_local_variable:suggestion

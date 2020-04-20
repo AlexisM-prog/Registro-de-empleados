@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4876B274-D6BE-48D9-AD20-846D738FD898}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>Registro_de_empleados.Principal</StartupObject>
-    <RootNamespace>Registro_de_empleados</RootNamespace>
-    <AssemblyName>Registro de empleados</AssemblyName>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
+    <RootNamespace>Control</RootNamespace>
+    <AssemblyName>Control</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -22,7 +23,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Registro de empleados.xml</DocumentationFile>
+    <DocumentationFile>Control.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Registro de empleados.xml</DocumentationFile>
+    <DocumentationFile>Control.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -69,7 +70,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Principal.vb" />
+    <Compile Include="ControlEmpleados.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -113,10 +114,6 @@
     <ProjectReference Include="..\LogicaDatos\LogicaDatos.vbproj">
       <Project>{FCDE2242-FE03-4B4E-A3E0-726B59D641B1}</Project>
       <Name>LogicaDatos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Vista\Vista.vbproj">
-      <Project>{990869a1-ede2-4ba1-9485-e155dc0a46d0}</Project>
-      <Name>Vista</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

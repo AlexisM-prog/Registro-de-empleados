@@ -5,11 +5,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{990869A1-EDE2-4BA1-9485-E155DC0A46D0}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Vista</RootNamespace>
     <AssemblyName>Vista</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -43,9 +43,16 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Vista.VMenuPrincipal</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,34 +71,82 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VistaMenuGeneral.vb" />
-    <Compile Include="VistaImporteSueldos.vb" />
-    <Compile Include="VistaMenuAgregarEmpleado.vb" />
-    <Compile Include="VistaMenuModificarEmpleado.vb" />
-    <Compile Include="VistaMenuRegistroEmpleado.vb" />
-    <Compile Include="VistaMenuPrincipal.vb" />
-    <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="My Project\Application.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Application.myapp</DependentUpon>
+    <Compile Include="VModificarEmpleado.Designer.vb">
+      <DependentUpon>VModificarEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VModificarEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VAgregarEmpleado.Designer.vb">
+      <DependentUpon>VAgregarEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VAgregarEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VBuscarEmpleado.Designer.vb">
+      <DependentUpon>VBuscarEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VBuscarEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VImporte.Designer.vb">
+      <DependentUpon>VImporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VImporte.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="VMenuPrincipal.Designer.vb">
+      <DependentUpon>VMenuPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VMenuPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="VRegistroEmpleado.Designer.vb">
+      <DependentUpon>VRegistroEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VRegistroEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="VModificarEmpleado.resx">
+      <DependentUpon>VModificarEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VAgregarEmpleado.resx">
+      <DependentUpon>VAgregarEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VBuscarEmpleado.resx">
+      <DependentUpon>VBuscarEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VImporte.resx">
+      <DependentUpon>VImporte.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VMenuPrincipal.resx">
+      <DependentUpon>VMenuPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VRegistroEmpleado.resx">
+      <DependentUpon>VRegistroEmpleado.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +162,28 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LogicaDatos\LogicaDatos.vbproj">
-      <Project>{FCDE2242-FE03-4B4E-A3E0-726B59D641B1}</Project>
+      <Project>{fcde2242-fe03-4b4e-a3e0-726b59d641b1}</Project>
       <Name>LogicaDatos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Registro de empleados\Control.vbproj">
+      <Project>{4876b274-d6be-48d9-ad20-846d738fd898}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-añadir-usuario-masculino-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-editar-usuario-masculino-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-grupos-de-usuarios-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-lista-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-volver-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

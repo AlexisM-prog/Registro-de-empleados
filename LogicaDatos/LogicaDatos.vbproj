@@ -83,6 +83,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Operario.vb" />
+    <Compile Include="Persona.vb" />
     <Compile Include="System\IClonable.vb" />
   </ItemGroup>
   <ItemGroup>
