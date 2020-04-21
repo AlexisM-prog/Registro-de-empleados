@@ -29,13 +29,15 @@ Public Class VBuscarEmpleado
         For i As Integer = 0 To 20
             If control.nroDeEmpleados > i Then
                 auxEmpleado = control.tomarEmpleado(i)
-                Me.dtgTabla.Rows.Add(
-                    New String() {
-                        auxEmpleado.CI, auxEmpleado.sueldoPorMes,
-                        auxEmpleado.PNom, auxEmpleado.SNom,
-                        auxEmpleado.PApe, auxEmpleado.SApe
-                    }
-                )
+                If auxEmpleado.activo = True Then
+                    Me.dtgTabla.Rows.Add(
+                        New String() {
+                            auxEmpleado.CI, auxEmpleado.sueldoPorMes,
+                            auxEmpleado.PNom, auxEmpleado.SNom,
+                            auxEmpleado.PApe, auxEmpleado.SApe
+                        }
+                    )
+                End If
             End If
         Next
     End Sub
@@ -78,5 +80,13 @@ Public Class VBuscarEmpleado
 
     Private Sub txtBuscarCI_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBuscarCI.KeyPress
         solonumeros(e)
+    End Sub
+
+    Private Sub dtgTabla_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgTabla.CellContentClick
+
+    End Sub
+
+    Private Sub VBuscarEmpleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

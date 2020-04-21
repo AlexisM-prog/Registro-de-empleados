@@ -26,20 +26,23 @@ Public Class VImporte
 
         For i As Integer = 0 To control.nroDeEmpleados - 1
             auxEmpleado = control.tomarEmpleado(i)
-            gastoTotal += auxEmpleado.sueldoPorMes
-            If i < 20 Then
-                If control.nroDeEmpleados > i Then
-                    auxEmpleado = control.tomarEmpleado(i)
-                    Me.dtgTabla.Rows.Add(
-                        New String() {
-                            auxEmpleado.CI, auxEmpleado.sueldoPorMes,
-                            auxEmpleado.PNom, auxEmpleado.SNom,
-                            auxEmpleado.PApe, auxEmpleado.SApe
-                        }
-                    )
+            If auxEmpleado.activo Then
+                gastoTotal += auxEmpleado.sueldoPorMes
+                If i < 20 Then ' limite para no llenar todo
+                    If control.nroDeEmpleados > i Then
+                        auxEmpleado = control.tomarEmpleado(i)
+                        Me.dtgTabla.Rows.Add(
+                            New String() {
+                                auxEmpleado.CI, auxEmpleado.sueldoPorMes,
+                                auxEmpleado.PNom, auxEmpleado.SNom,
+                                auxEmpleado.PApe, auxEmpleado.SApe
+                            }
+                        )
+                    End If
                 End If
             End If
         Next
         lblGasto.Text = "Gasto total:" & gastoTotal
     End Sub
+
 End Class

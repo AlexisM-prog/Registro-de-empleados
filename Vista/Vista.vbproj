@@ -71,6 +71,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VAgregarTelefonos.Designer.vb">
+      <DependentUpon>VAgregarTelefonos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VAgregarTelefonos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VModificarEmpleado.Designer.vb">
       <DependentUpon>VModificarEmpleado.vb</DependentUpon>
     </Compile>
@@ -124,6 +130,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="VAgregarTelefonos.resx">
+      <DependentUpon>VAgregarTelefonos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VModificarEmpleado.resx">
       <DependentUpon>VModificarEmpleado.vb</DependentUpon>
     </EmbeddedResource>

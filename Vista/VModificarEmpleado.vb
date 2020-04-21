@@ -6,12 +6,14 @@ Public Class VModificarEmpleado
     Private control As ControlEmpleados
     Property nroEmpleado As Integer
     Private relacionNroComponente As Dictionary(Of Integer, Object())
+    Private vAgregarTelefonos As VAgregarTelefonos
 
     Public Sub New(control As ControlEmpleados, vAnterior As VBuscarEmpleado)
 
         Me.vAnterior = vAnterior
         Me.control = control
         Me.nroEmpleado = 0
+        Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.relacionNroComponente = New Dictionary(Of Integer, Object()) From {
@@ -63,7 +65,7 @@ Public Class VModificarEmpleado
                 Case "Operario"
                     auxEmpleado.cargo = 2
             End Select
-
+            auxEmpleado.activo = cckActivo.AutoCheck
             For i As Integer = 0 To relacionNroComponente.Count - 1
                 If i <> 4 Then
                     Me.relacionNroComponente(i)(1).Text = ""
@@ -89,6 +91,7 @@ Public Class VModificarEmpleado
         Else
             cboEsBis.Text = "No"
         End If
+        cckActivo.AutoCheck = aux.activo
         txtSueldoPorMes.Text = aux.sueldoPorMes
         cboCargo.SelectedIndex = aux.cargo
 
@@ -115,7 +118,7 @@ Public Class VModificarEmpleado
             e.Handled = True
         End If
     End Function
-    Private Sub txtPApe_KeyUp(sender As Object, e As KeyEventArgs) Handles txtPApe.KeyUp
+    Private Sub txtPApe_KeyUp(sender As Object, e As KeyEventArgs) Handles txtSueldoPorMes.KeyUp, txtNroPuerta.KeyUp, txtPApe.KeyUp, txtSApe.KeyUp, txtPNom.KeyUp, txtSNom.KeyUp, txtCalle.KeyUp
         Select Case sender.GetHashCode
             Case Me.txtPNom.GetHashCode
                 rojoSiEstaVacia(lblPNom, txtPNom)
@@ -138,5 +141,10 @@ Public Class VModificarEmpleado
     End Sub
     Private Sub txtLimiteANumero_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNroPuerta.KeyPress, txtSueldoPorMes.KeyPress
         soloNumeros(e)
+    End Sub
+
+    Private Sub btnAgregarTelefonos_Click(sender As Object, e As EventArgs) Handles btnAgregarTelefonos.Click
+        Me.Hide()
+        vAgregarTelefonos.Show()
     End Sub
 End Class

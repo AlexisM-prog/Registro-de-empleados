@@ -43,6 +43,9 @@ Partial Class VModificarEmpleado
         Me.lblPNom = New System.Windows.Forms.Label()
         Me.cboCargo = New System.Windows.Forms.ComboBox()
         Me.cboEsBis = New System.Windows.Forms.ComboBox()
+        Me.lblActivo = New System.Windows.Forms.Label()
+        Me.cckActivo = New System.Windows.Forms.CheckBox()
+        Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblAgregarEmpleado
@@ -58,7 +61,7 @@ Partial Class VModificarEmpleado
         'btnGuardar
         '
         Me.btnGuardar.Font = New System.Drawing.Font("Corbel", 22.0!)
-        Me.btnGuardar.Location = New System.Drawing.Point(518, 418)
+        Me.btnGuardar.Location = New System.Drawing.Point(503, 480)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(304, 81)
         Me.btnGuardar.TabIndex = 10
@@ -232,11 +235,43 @@ Partial Class VModificarEmpleado
         Me.cboEsBis.Size = New System.Drawing.Size(160, 24)
         Me.cboEsBis.TabIndex = 75
         '
+        'lblActivo
+        '
+        Me.lblActivo.AutoSize = True
+        Me.lblActivo.Font = New System.Drawing.Font("Corbel", 14.0!)
+        Me.lblActivo.Location = New System.Drawing.Point(164, 470)
+        Me.lblActivo.Name = "lblActivo"
+        Me.lblActivo.Size = New System.Drawing.Size(83, 29)
+        Me.lblActivo.TabIndex = 77
+        Me.lblActivo.Text = "Activo:"
+        '
+        'cckActivo
+        '
+        Me.cckActivo.AutoSize = True
+        Me.cckActivo.Location = New System.Drawing.Point(251, 480)
+        Me.cckActivo.Name = "cckActivo"
+        Me.cckActivo.Size = New System.Drawing.Size(18, 17)
+        Me.cckActivo.TabIndex = 78
+        Me.cckActivo.UseVisualStyleBackColor = True
+        '
+        'btnAgregarTelefonos
+        '
+        Me.btnAgregarTelefonos.Font = New System.Drawing.Font("Corbel", 22.0!)
+        Me.btnAgregarTelefonos.Location = New System.Drawing.Point(479, 392)
+        Me.btnAgregarTelefonos.Name = "btnAgregarTelefonos"
+        Me.btnAgregarTelefonos.Size = New System.Drawing.Size(328, 54)
+        Me.btnAgregarTelefonos.TabIndex = 79
+        Me.btnAgregarTelefonos.Text = "Telefonos"
+        Me.btnAgregarTelefonos.UseVisualStyleBackColor = True
+        '
         'VModificarEmpleado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(917, 592)
+        Me.Controls.Add(Me.btnAgregarTelefonos)
+        Me.Controls.Add(Me.cckActivo)
+        Me.Controls.Add(Me.lblActivo)
         Me.Controls.Add(Me.cboEsBis)
         Me.Controls.Add(Me.cboCargo)
         Me.Controls.Add(Me.txtNroPuerta)
@@ -286,4 +321,7 @@ Partial Class VModificarEmpleado
     Friend WithEvents lblPNom As Windows.Forms.Label
     Friend WithEvents cboCargo As Windows.Forms.ComboBox
     Friend WithEvents cboEsBis As Windows.Forms.ComboBox
+    Friend WithEvents lblActivo As Windows.Forms.Label
+    Friend WithEvents cckActivo As Windows.Forms.CheckBox
+    Friend WithEvents btnAgregarTelefonos As Windows.Forms.Button
 End Class

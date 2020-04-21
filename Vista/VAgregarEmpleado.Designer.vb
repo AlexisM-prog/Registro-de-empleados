@@ -44,8 +44,11 @@ Partial Class VAgregarEmpleado
         Me.lblCargo = New System.Windows.Forms.Label()
         Me.lblCalle = New System.Windows.Forms.Label()
         Me.btnRegistrar = New System.Windows.Forms.Button()
-        Me.btnAtras = New System.Windows.Forms.Button()
         Me.lblGuardado = New System.Windows.Forms.Label()
+        Me.cckActivo = New System.Windows.Forms.CheckBox()
+        Me.lblActivo = New System.Windows.Forms.Label()
+        Me.btnTelefonos = New System.Windows.Forms.Button()
+        Me.btnAtras = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblAgregarEmpleado
@@ -103,7 +106,7 @@ Partial Class VAgregarEmpleado
         '
         Me.cboCargo.FormattingEnabled = True
         Me.cboCargo.Items.AddRange(New Object() {"Administrativo", "Gerente", "Operario"})
-        Me.cboCargo.Location = New System.Drawing.Point(671, 416)
+        Me.cboCargo.Location = New System.Drawing.Point(671, 397)
         Me.cboCargo.Name = "cboCargo"
         Me.cboCargo.Size = New System.Drawing.Size(160, 24)
         Me.cboCargo.TabIndex = 10
@@ -148,7 +151,7 @@ Partial Class VAgregarEmpleado
         '
         'txtCI
         '
-        Me.txtCI.Location = New System.Drawing.Point(256, 417)
+        Me.txtCI.Location = New System.Drawing.Point(256, 401)
         Me.txtCI.Name = "txtCI"
         Me.txtCI.Size = New System.Drawing.Size(160, 22)
         Me.txtCI.TabIndex = 5
@@ -157,7 +160,7 @@ Partial Class VAgregarEmpleado
         '
         Me.lblCI.AutoSize = True
         Me.lblCI.Font = New System.Drawing.Font("Corbel", 14.0!)
-        Me.lblCI.Location = New System.Drawing.Point(42, 413)
+        Me.lblCI.Location = New System.Drawing.Point(42, 397)
         Me.lblCI.Name = "lblCI"
         Me.lblCI.Size = New System.Drawing.Size(219, 29)
         Me.lblCI.TabIndex = 13
@@ -218,7 +221,7 @@ Partial Class VAgregarEmpleado
         '
         Me.lblCargo.AutoSize = True
         Me.lblCargo.Font = New System.Drawing.Font("Corbel", 14.0!)
-        Me.lblCargo.Location = New System.Drawing.Point(597, 413)
+        Me.lblCargo.Location = New System.Drawing.Point(597, 394)
         Me.lblCargo.Name = "lblCargo"
         Me.lblCargo.Size = New System.Drawing.Size(79, 29)
         Me.lblCargo.TabIndex = 30
@@ -237,12 +240,53 @@ Partial Class VAgregarEmpleado
         'btnRegistrar
         '
         Me.btnRegistrar.Font = New System.Drawing.Font("Corbel", 22.0!)
-        Me.btnRegistrar.Location = New System.Drawing.Point(602, 484)
+        Me.btnRegistrar.Location = New System.Drawing.Point(567, 484)
         Me.btnRegistrar.Name = "btnRegistrar"
         Me.btnRegistrar.Size = New System.Drawing.Size(264, 81)
         Me.btnRegistrar.TabIndex = 11
         Me.btnRegistrar.Text = "Registrar"
         Me.btnRegistrar.UseVisualStyleBackColor = True
+        '
+        'lblGuardado
+        '
+        Me.lblGuardado.AutoSize = True
+        Me.lblGuardado.Font = New System.Drawing.Font("Corbel", 14.0!)
+        Me.lblGuardado.ForeColor = System.Drawing.Color.Green
+        Me.lblGuardado.Location = New System.Drawing.Point(67, 536)
+        Me.lblGuardado.Name = "lblGuardado"
+        Me.lblGuardado.Size = New System.Drawing.Size(322, 29)
+        Me.lblGuardado.TabIndex = 31
+        Me.lblGuardado.Text = "Se ha guardado correctamente"
+        Me.lblGuardado.Visible = False
+        '
+        'cckActivo
+        '
+        Me.cckActivo.AutoSize = True
+        Me.cckActivo.Location = New System.Drawing.Point(263, 446)
+        Me.cckActivo.Name = "cckActivo"
+        Me.cckActivo.Size = New System.Drawing.Size(18, 17)
+        Me.cckActivo.TabIndex = 80
+        Me.cckActivo.UseVisualStyleBackColor = True
+        '
+        'lblActivo
+        '
+        Me.lblActivo.AutoSize = True
+        Me.lblActivo.Font = New System.Drawing.Font("Corbel", 14.0!)
+        Me.lblActivo.Location = New System.Drawing.Point(176, 436)
+        Me.lblActivo.Name = "lblActivo"
+        Me.lblActivo.Size = New System.Drawing.Size(83, 29)
+        Me.lblActivo.TabIndex = 79
+        Me.lblActivo.Text = "Activo:"
+        '
+        'btnTelefonos
+        '
+        Me.btnTelefonos.Font = New System.Drawing.Font("Corbel", 18.0!)
+        Me.btnTelefonos.Location = New System.Drawing.Point(493, 436)
+        Me.btnTelefonos.Name = "btnTelefonos"
+        Me.btnTelefonos.Size = New System.Drawing.Size(338, 42)
+        Me.btnTelefonos.TabIndex = 81
+        Me.btnTelefonos.Text = "Telefonos"
+        Me.btnTelefonos.UseVisualStyleBackColor = True
         '
         'btnAtras
         '
@@ -254,23 +298,14 @@ Partial Class VAgregarEmpleado
         Me.btnAtras.TabIndex = 12
         Me.btnAtras.UseVisualStyleBackColor = True
         '
-        'lblGuardado
-        '
-        Me.lblGuardado.AutoSize = True
-        Me.lblGuardado.Font = New System.Drawing.Font("Corbel", 14.0!)
-        Me.lblGuardado.ForeColor = System.Drawing.Color.Green
-        Me.lblGuardado.Location = New System.Drawing.Point(77, 485)
-        Me.lblGuardado.Name = "lblGuardado"
-        Me.lblGuardado.Size = New System.Drawing.Size(322, 29)
-        Me.lblGuardado.TabIndex = 31
-        Me.lblGuardado.Text = "Se ha guardado correctamente"
-        Me.lblGuardado.Visible = False
-        '
         'VAgregarEmpleado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(917, 592)
+        Me.Controls.Add(Me.btnTelefonos)
+        Me.Controls.Add(Me.cckActivo)
+        Me.Controls.Add(Me.lblActivo)
         Me.Controls.Add(Me.lblGuardado)
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.btnRegistrar)
@@ -326,4 +361,7 @@ Partial Class VAgregarEmpleado
     Friend WithEvents btnRegistrar As Windows.Forms.Button
     Friend WithEvents btnAtras As Windows.Forms.Button
     Friend WithEvents lblGuardado As Windows.Forms.Label
+    Friend WithEvents cckActivo As Windows.Forms.CheckBox
+    Friend WithEvents lblActivo As Windows.Forms.Label
+    Friend WithEvents btnTelefonos As Windows.Forms.Button
 End Class

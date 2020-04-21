@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D76297F6-107B-44E8-BE41-71D33F0AE751}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		..\..\..\Google Drive\ESI informatica\3ro\ProgramaciónVB\ejercicioPersonal\Obligatorio1\ejerccio 2 Programa\extra\diseñoDeClases\diagramaDeClases.dia = ..\..\..\Google Drive\ESI informatica\3ro\ProgramaciónVB\ejercicioPersonal\Obligatorio1\ejerccio 2 Programa\extra\diseñoDeClases\diagramaDeClases.dia
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Vista", "Vista\Vista.vbproj", "{990869A1-EDE2-4BA1-9485-E155DC0A46D0}"

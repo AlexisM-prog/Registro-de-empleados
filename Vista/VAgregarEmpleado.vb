@@ -8,15 +8,13 @@ Public Class VAgregarEmpleado
     Private vAnterior As VRegistroEmpleado
     Private control As ControlEmpleados
     Private relacionNroComponente As Dictionary(Of Integer, Object())
+    Private vTelefonos As VAgregarTelefonos
 
     Public Sub New(control As ControlEmpleados, vAnterior As VRegistroEmpleado)
         Me.vAnterior = vAnterior
         Me.control = control
         Me.relacionNroComponente = New Dictionary(Of Integer, Object())
-
-
-
-
+        Me.vTelefonos = New VAgregarTelefonos(control, Me)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.relacionNroComponente.Add(0, {Me.lblPNom, Me.txtPNom})
@@ -43,7 +41,6 @@ Public Class VAgregarEmpleado
             If problemas(i) Then
                 Me.relacionNroComponente(i)(0).ForeColor = Drawing.Color.Red
                 datosValidos = False
-
             Else
                 Me.relacionNroComponente(i)(0).ForeColor = Drawing.Color.Black
             End If
@@ -51,7 +48,7 @@ Public Class VAgregarEmpleado
         If datosValidos Then
             Me.control.agregarEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text, txtCI.Text, txtCalle.Text,
                                 txtNroPuerta.Text, cboEsBis.Text = "Si", txtSueldoPorMes.Text,
-                                cboCargo.SelectedIndex, True)
+                                cboCargo.SelectedIndex, cckActivo.AutoCheck)
 
             For i As Integer = 0 To problemas.Count - 1
                 Me.relacionNroComponente(i)(1).text = ""
@@ -120,5 +117,11 @@ Public Class VAgregarEmpleado
     End Sub
     Private Sub txtLimiteANumero_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCI.KeyPress, txtNroPuerta.KeyPress, txtSueldoPorMes.KeyPress
         soloNumeros(e)
+    End Sub
+
+    Private Sub btnTelefonos_Click(sender As Object, e As EventArgs) Handles btnTelefonos.Click
+        Me.Hide()
+        vTelefonos.Show()
+        vTelefonos.agregarProcision(-1)
     End Sub
 End Class
