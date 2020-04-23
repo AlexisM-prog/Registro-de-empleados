@@ -2,8 +2,8 @@
     Inherits Empleado
     Public Sub New(PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As Integer, esBis As Boolean,
-                  sueldoPorMes As Integer, cargo As Integer, activo As Boolean)
-        MyBase.New(PNom, SNom, PApe, SApe, CI, calle, nroPuerta, esBis, sueldoPorMes, cargo, activo)
+                  sueldoPorMes As Integer, cargo As Integer, activo As Boolean, telefonos As String())
+        MyBase.New(PNom, SNom, PApe, SApe, CI, calle, nroPuerta, esBis, sueldoPorMes, cargo, activo, telefonos)
 
     End Sub
     Overloads Property sueldoPorMes As Integer

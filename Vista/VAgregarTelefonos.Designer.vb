@@ -70,7 +70,7 @@ Partial Class VAgregarTelefonos
         '
         'btnEliminar
         '
-        Me.btnEliminar.Location = New System.Drawing.Point(57, 527)
+        Me.btnEliminar.Location = New System.Drawing.Point(57, 523)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(794, 37)
         Me.btnEliminar.TabIndex = 17

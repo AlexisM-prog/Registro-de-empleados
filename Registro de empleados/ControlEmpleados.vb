@@ -11,7 +11,7 @@ Public Class ControlEmpleados
     ' si uno de los parametors de tomarDatosEmpleados es nothing es porque no se usa esa variable por lo tanto no hay probleamas
     Function testearDatosEmpleado(PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As String,
-                  sueldoPorMes As String, cargo As Integer) As Boolean()
+                  sueldoPorMes As String, cargo As Integer, telefonos As String()) As Boolean()
         Dim problemas() As Boolean = {
             True, True, True, True,' PNom, SNom, PApe, SApe,
             True, True, True, True} ' ci, calle, nroPuerta, sueldoPorMes
@@ -44,14 +44,31 @@ Public Class ControlEmpleados
     End Function
     Function agregarEmpleado(PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As String, esBis As Boolean,
-                  sueldoPorMes As String, cargo As Integer, activo As Boolean)
-        Me.empleados.Add(
-            New Empleado(
-                PNom, SNom, PApe, SApe,
-                CI, calle, Integer.Parse(nroPuerta), esBis,
-                Integer.Parse(sueldoPorMes), cargo, activo
-            )
-        )
+                  sueldoPorMes As String, cargo As Integer, activo As Boolean, telefonos As String())
+
+        Select Case cargo
+            Case 0
+                Me.empleados.Add(
+                    New Administrativo(PNom, SNom, PApe, SApe,
+                        CI, calle, Integer.Parse(nroPuerta), esBis,
+                        Integer.Parse(sueldoPorMes), cargo, activo, telefonos)
+                )
+
+            Case 1
+
+                Me.empleados.Add(
+                    New Gerente(PNom, SNom, PApe, SApe,
+                        CI, calle, Integer.Parse(nroPuerta), esBis,
+                        Integer.Parse(sueldoPorMes), cargo, activo, telefonos)
+                )
+
+            Case 2
+                Me.empleados.Add(
+                    New Operario(PNom, SNom, PApe, SApe,
+                        CI, calle, Integer.Parse(nroPuerta), esBis,
+                        Integer.Parse(sueldoPorMes), cargo, activo, telefonos)
+                )
+        End Select
     End Function
     Function modEmpleado(empleado As Empleado) As Boolean
         Dim modificicadoAnterior As Boolean = False
@@ -65,7 +82,7 @@ Public Class ControlEmpleados
     End Function
 
     Function tomarEmpleado(pos As Integer) As Empleado
-        If pos < empleados.Count Then
+        If pos < empleados.Count And pos > -1 Then
             Return empleados(pos)
         End If
     End Function

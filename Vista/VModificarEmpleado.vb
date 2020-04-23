@@ -1,4 +1,5 @@
 ﻿Imports Control
+Imports LogicaDatos
 Imports System.Windows.Forms
 
 Public Class VModificarEmpleado
@@ -36,7 +37,7 @@ Public Class VModificarEmpleado
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Dim auxEmpleado = control.tomarEmpleado(nroEmpleado)
         Dim problemas() As Boolean = control.testearDatosEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text,
-                                Nothing, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboEsBis.SelectedIndex)
+                                Nothing, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboEsBis.SelectedIndex, vAgregarTelefonos.telefonos.ToArray)
         Dim datosValidos As Boolean = True
         For i As Integer = 0 To problemas.Count - 1
             If i <> 4 Then
@@ -65,7 +66,10 @@ Public Class VModificarEmpleado
                 Case "Operario"
                     auxEmpleado.cargo = 2
             End Select
-            auxEmpleado.activo = cckActivo.AutoCheck
+            auxEmpleado.activo = cckActivo.Checked
+            vAgregarTelefonos.telefonos.AddRange(auxEmpleado.telefonos)
+            auxEmpleado.telefonos = vAgregarTelefonos.telefonos.ToArray()
+
             For i As Integer = 0 To relacionNroComponente.Count - 1
                 If i <> 4 Then
                     Me.relacionNroComponente(i)(1).Text = ""
@@ -91,7 +95,7 @@ Public Class VModificarEmpleado
         Else
             cboEsBis.Text = "No"
         End If
-        cckActivo.AutoCheck = aux.activo
+        cckActivo.Checked = aux.activo
         txtSueldoPorMes.Text = aux.sueldoPorMes
         cboCargo.SelectedIndex = aux.cargo
 
@@ -145,6 +149,7 @@ Public Class VModificarEmpleado
 
     Private Sub btnAgregarTelefonos_Click(sender As Object, e As EventArgs) Handles btnAgregarTelefonos.Click
         Me.Hide()
+        vAgregarTelefonos.nroEmpleado = Me.nroEmpleado
         vAgregarTelefonos.Show()
     End Sub
 End Class

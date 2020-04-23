@@ -44,7 +44,6 @@ Partial Class VAgregarEmpleado
         Me.lblCargo = New System.Windows.Forms.Label()
         Me.lblCalle = New System.Windows.Forms.Label()
         Me.btnRegistrar = New System.Windows.Forms.Button()
-        Me.lblGuardado = New System.Windows.Forms.Label()
         Me.cckActivo = New System.Windows.Forms.CheckBox()
         Me.lblActivo = New System.Windows.Forms.Label()
         Me.btnTelefonos = New System.Windows.Forms.Button()
@@ -247,18 +246,6 @@ Partial Class VAgregarEmpleado
         Me.btnRegistrar.Text = "Registrar"
         Me.btnRegistrar.UseVisualStyleBackColor = True
         '
-        'lblGuardado
-        '
-        Me.lblGuardado.AutoSize = True
-        Me.lblGuardado.Font = New System.Drawing.Font("Corbel", 14.0!)
-        Me.lblGuardado.ForeColor = System.Drawing.Color.Green
-        Me.lblGuardado.Location = New System.Drawing.Point(67, 536)
-        Me.lblGuardado.Name = "lblGuardado"
-        Me.lblGuardado.Size = New System.Drawing.Size(322, 29)
-        Me.lblGuardado.TabIndex = 31
-        Me.lblGuardado.Text = "Se ha guardado correctamente"
-        Me.lblGuardado.Visible = False
-        '
         'cckActivo
         '
         Me.cckActivo.AutoSize = True
@@ -306,7 +293,6 @@ Partial Class VAgregarEmpleado
         Me.Controls.Add(Me.btnTelefonos)
         Me.Controls.Add(Me.cckActivo)
         Me.Controls.Add(Me.lblActivo)
-        Me.Controls.Add(Me.lblGuardado)
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.btnRegistrar)
         Me.Controls.Add(Me.cboEsBis)
@@ -360,7 +346,6 @@ Partial Class VAgregarEmpleado
     Friend WithEvents lblCalle As Windows.Forms.Label
     Friend WithEvents btnRegistrar As Windows.Forms.Button
     Friend WithEvents btnAtras As Windows.Forms.Button
-    Friend WithEvents lblGuardado As Windows.Forms.Label
     Friend WithEvents cckActivo As Windows.Forms.CheckBox
     Friend WithEvents lblActivo As Windows.Forms.Label
     Friend WithEvents btnTelefonos As Windows.Forms.Button

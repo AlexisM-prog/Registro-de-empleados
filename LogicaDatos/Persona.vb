@@ -9,7 +9,7 @@
     Property esBis As Boolean
     Property telefonos As String()
     Public Sub New(PNom As String, SNom As String, PApe As String, SApe As String,
-                   CI As String, calle As String, nroPuerta As Integer, esBis As Boolean)
+                   CI As String, calle As String, nroPuerta As Integer, esBis As Boolean, telefonos As String())
         Me.PNom = PNom
         Me.SNom = SNom
         Me.PApe = PApe
@@ -18,5 +18,6 @@
         Me.calle = calle
         Me.nroPuerta = nroPuerta
         Me.esBis = esBis
+        Me.telefonos = telefonos
     End Sub
 End Class

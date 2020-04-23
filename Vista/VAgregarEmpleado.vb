@@ -8,13 +8,13 @@ Public Class VAgregarEmpleado
     Private vAnterior As VRegistroEmpleado
     Private control As ControlEmpleados
     Private relacionNroComponente As Dictionary(Of Integer, Object())
-    Private vTelefonos As VAgregarTelefonos
+    Property vAgregarTelefonos As VAgregarTelefonos
 
     Public Sub New(control As ControlEmpleados, vAnterior As VRegistroEmpleado)
         Me.vAnterior = vAnterior
         Me.control = control
         Me.relacionNroComponente = New Dictionary(Of Integer, Object())
-        Me.vTelefonos = New VAgregarTelefonos(control, Me)
+        Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.relacionNroComponente.Add(0, {Me.lblPNom, Me.txtPNom})
@@ -35,7 +35,7 @@ Public Class VAgregarEmpleado
     End Sub
     Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
         Dim problemas() As Boolean = control.testearDatosEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text,
-                                txtCI.Text, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboCargo.SelectedIndex)
+                                txtCI.Text, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboCargo.SelectedIndex, vAgregarTelefonos.telefonos.ToArray)
         Dim datosValidos As Boolean = True
         For i As Integer = 0 To problemas.Count - 1
             If problemas(i) Then
@@ -48,14 +48,17 @@ Public Class VAgregarEmpleado
         If datosValidos Then
             Me.control.agregarEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text, txtCI.Text, txtCalle.Text,
                                 txtNroPuerta.Text, cboEsBis.Text = "Si", txtSueldoPorMes.Text,
-                                cboCargo.SelectedIndex, cckActivo.AutoCheck)
+                                cboCargo.SelectedIndex, cckActivo.Checked, vAgregarTelefonos.telefonos.ToArray)
 
             For i As Integer = 0 To problemas.Count - 1
                 Me.relacionNroComponente(i)(1).text = ""
                 Me.relacionNroComponente(i)(0).ForeColor = Drawing.Color.Red
             Next
+            Me.vAgregarTelefonos.lbNumeros.Items.Clear()
 
-            lblGuardado.Show()
+            MsgBox("Se guardo exitosamente")
+            Me.Hide()
+            vAnterior.Show()
         End If
 
     End Sub
@@ -100,7 +103,6 @@ Public Class VAgregarEmpleado
             Case Me.txtSueldoPorMes.GetHashCode
                 rojoSiEstaVacia(lblSueldoPorMes, txtSueldoPorMes)
         End Select
-        lblGuardado.Hide()
     End Sub
     Private Sub VAgregarEmpleado_Load(sender As Object, e As EventArgs) Handles Me.Load
         rojoSiEstaVacia(lblPNom, txtPNom)
@@ -121,7 +123,6 @@ Public Class VAgregarEmpleado
 
     Private Sub btnTelefonos_Click(sender As Object, e As EventArgs) Handles btnTelefonos.Click
         Me.Hide()
-        vTelefonos.Show()
-        vTelefonos.agregarProcision(-1)
+        vAgregarTelefonos.Show()
     End Sub
 End Class
