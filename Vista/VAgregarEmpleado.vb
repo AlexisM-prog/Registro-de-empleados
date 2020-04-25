@@ -35,7 +35,7 @@ Public Class VAgregarEmpleado
     End Sub
     Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
         Dim problemas() As Boolean = control.testearDatosEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text,
-                                txtCI.Text, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboCargo.SelectedIndex, vAgregarTelefonos.telefonos.ToArray)
+                                txtCI.Text, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboCargo.SelectedIndex, vAgregarTelefonos.getNumerosTelefonicos())
         Dim datosValidos As Boolean = True
         For i As Integer = 0 To problemas.Count - 1
             If problemas(i) Then
@@ -48,15 +48,13 @@ Public Class VAgregarEmpleado
         If datosValidos Then
             Me.control.agregarEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text, txtCI.Text, txtCalle.Text,
                                 txtNroPuerta.Text, cboEsBis.Text = "Si", txtSueldoPorMes.Text,
-                                cboCargo.SelectedIndex, cckActivo.Checked, vAgregarTelefonos.telefonos.ToArray)
+                                cboCargo.SelectedIndex, cckActivo.Checked, vAgregarTelefonos.getNumerosTelefonicos())
 
             For i As Integer = 0 To problemas.Count - 1
                 Me.relacionNroComponente(i)(1).text = ""
                 Me.relacionNroComponente(i)(0).ForeColor = Drawing.Color.Red
             Next
             Me.vAgregarTelefonos.lbNumeros.Items.Clear()
-
-            MsgBox("Se guardo exitosamente")
             Me.Hide()
             vAnterior.Show()
         End If

@@ -14,7 +14,7 @@ Public Class VModificarEmpleado
         Me.vAnterior = vAnterior
         Me.control = control
         Me.nroEmpleado = 0
-        Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
+        Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me, nroEmpleado)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.relacionNroComponente = New Dictionary(Of Integer, Object()) From {
@@ -32,12 +32,13 @@ Public Class VModificarEmpleado
     End Sub
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
         Me.Hide()
+        vAgregarTelefonos.Recargar = True
         Me.vAnterior.Show()
     End Sub
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Dim auxEmpleado = control.tomarEmpleado(nroEmpleado)
         Dim problemas() As Boolean = control.testearDatosEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text,
-                                Nothing, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboEsBis.SelectedIndex, vAgregarTelefonos.telefonos.ToArray)
+                                Nothing, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboEsBis.SelectedIndex, vAgregarTelefonos.getNumerosTelefonicos())
         Dim datosValidos As Boolean = True
         For i As Integer = 0 To problemas.Count - 1
             If i <> 4 Then
@@ -67,8 +68,8 @@ Public Class VModificarEmpleado
                     auxEmpleado.cargo = 2
             End Select
             auxEmpleado.activo = cckActivo.Checked
-            vAgregarTelefonos.telefonos.AddRange(auxEmpleado.telefonos)
-            auxEmpleado.telefonos = vAgregarTelefonos.telefonos.ToArray()
+            auxEmpleado.telefonos = vAgregarTelefonos.getNumerosTelefonicos()
+            vAgregarTelefonos.Recargar = True
 
             For i As Integer = 0 To relacionNroComponente.Count - 1
                 If i <> 4 Then
@@ -76,6 +77,7 @@ Public Class VModificarEmpleado
                     Me.relacionNroComponente(i)(0).ForeColor = Drawing.Color.Red
                 End If
             Next
+            Me.vAgregarTelefonos.lbNumeros.Items.Clear()
             Me.Hide()
             vAnterior.Show()
         End If
@@ -149,7 +151,7 @@ Public Class VModificarEmpleado
 
     Private Sub btnAgregarTelefonos_Click(sender As Object, e As EventArgs) Handles btnAgregarTelefonos.Click
         Me.Hide()
-        vAgregarTelefonos.nroEmpleado = Me.nroEmpleado
+        vAgregarTelefonos.nroEmpleado = nroEmpleado
         vAgregarTelefonos.Show()
     End Sub
 End Class

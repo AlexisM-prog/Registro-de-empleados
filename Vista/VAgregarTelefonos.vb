@@ -8,16 +8,7 @@ Public Class VAgregarTelefonos
     Private empleado As Empleado
     Private control As ControlEmpleados
     Private _nroEmpleado As Integer
-    Private _telefonos As List(Of String)
-    Property telefonos As List(Of String)
-        Get
-            Return _telefonos
-        End Get
-        Set(value As List(Of String))
-            _telefonos = value
-        End Set
-    End Property
-
+    Private _recargar As Boolean
     Public Property nroEmpleado As Integer
         Get
             Return _nroEmpleado
@@ -26,20 +17,35 @@ Public Class VAgregarTelefonos
             _nroEmpleado = value
         End Set
     End Property
+    Public Property Recargar As Boolean
+        Get
+            Return _recargar
+        End Get
+        Set(value As Boolean)
+            _recargar = value
+        End Set
+    End Property
+
+    Function getNumerosTelefonicos() As String()
+        Dim telefonos As List(Of String) = New List(Of String)
+        For Each tel As String In lbNumeros.Items
+            telefonos.Add(tel)
+        Next
+        Return telefonos.ToArray()
+    End Function
 
     Public Sub New(control As ControlEmpleados, vAnterior As VAgregarEmpleado)
         Me.vAnterior = vAnterior
         Me.empleado = Nothing
         Me.control = control
-        Me.telefonos = New List(Of String)
         InitializeComponent()
 
     End Sub
-    Public Sub New(control As ControlEmpleados, vAnterior As VModificarEmpleado)
+    Public Sub New(control As ControlEmpleados, vAnterior As VModificarEmpleado, ByRef nroEmpleado As Integer)
         Me.vAnterior = vAnterior
         Me.control = control
-        'Me.empleado = control.tomarEmpleado(pos)
-        Me.telefonos = New List(Of String)
+        Me.nroEmpleado = nroEmpleado
+        Me.Recargar = True
         InitializeComponent()
 
     End Sub
@@ -49,7 +55,6 @@ Public Class VAgregarTelefonos
     End Sub
     Private Sub btnAgregarTelefono_Click(sender As Object, e As EventArgs) Handles btnAgregarTelefono.Click
         If txtNumero.Text <> "" Then
-            telefonos.Add(txtNumero.Text)
             lbNumeros.Items.Add(txtNumero.Text)
             txtNumero.Text = ""
         End If
@@ -61,7 +66,6 @@ Public Class VAgregarTelefonos
         Next
         If telefonoB <> "" Then
             lbNumeros.Items.Remove(telefonoB)
-            telefonos.Remove(telefonoB)
         End If
 
     End Sub
@@ -70,13 +74,16 @@ Public Class VAgregarTelefonos
         If vAnterior.GetType.IsAssignableFrom(GetType(VAgregarEmpleado)) Then
 
         Else
-            If Me.Visible Then
+            If Me.Recargar Then
+                Me.lbNumeros.Items.Clear()
                 Dim auxEmpleado = control.tomarEmpleado(nroEmpleado)
                 If Not auxEmpleado Is Nothing Then
                     For Each telefono As String In auxEmpleado.telefonos
                         lbNumeros.Items.Add(telefono)
                     Next
                 End If
+
+                Recargar = False
             End If
         End If
 
@@ -84,7 +91,6 @@ Public Class VAgregarTelefonos
 
     Private Sub txtNumero_Enter(sender As Object, e As EventArgs) Handles txtNumero.Enter
         If txtNumero.Text <> "" Then
-            telefonos.Add(txtNumero.Text)
             lbNumeros.Items.Add(txtNumero.Text)
             txtNumero.Text = ""
         End If

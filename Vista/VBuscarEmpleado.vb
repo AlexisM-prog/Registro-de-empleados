@@ -81,12 +81,4 @@ Public Class VBuscarEmpleado
     Private Sub txtBuscarCI_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBuscarCI.KeyPress
         solonumeros(e)
     End Sub
-
-    Private Sub dtgTabla_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgTabla.CellContentClick
-
-    End Sub
-
-    Private Sub VBuscarEmpleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class

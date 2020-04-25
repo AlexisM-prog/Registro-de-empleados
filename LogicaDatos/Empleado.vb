@@ -1,6 +1,4 @@
-﻿Imports System.IClonable
-Public Class Empleado : Inherits Persona
-    Implements ICloneable
+﻿Public Class Empleado : Inherits Persona
 
 
     Protected _sueldoPorMes As Integer
@@ -40,8 +38,5 @@ Public Class Empleado : Inherits Persona
     End Sub
     Overridable Function getProfesionComoString() As String
         Return ""
-    End Function
-    Public Function Clone() As Object Implements ICloneable.Clone
-        Return DirectCast(Me.MemberwiseClone, Empleado)
     End Function
 End Class
