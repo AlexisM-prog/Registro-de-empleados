@@ -21,7 +21,7 @@ Public Class VImporte
     End Sub
     Private Sub VImporte_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         Dim gastoTotal As Integer = 0
-        Dim auxEmpleado As Empleado
+        Dim auxEmpleado
         Me.dtgTabla.Rows.Clear()
 
         For i As Integer = 0 To control.nroDeEmpleados - 1
