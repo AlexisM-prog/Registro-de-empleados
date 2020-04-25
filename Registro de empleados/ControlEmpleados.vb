@@ -62,7 +62,7 @@ Public Class ControlEmpleados
                 Me.empleados.Add(
                     New Administrativo(PNom, SNom, PApe, SApe,
                         CI, calle, Integer.Parse(nroPuerta), esBis,
-                        Integer.Parse(sueldoPorMes), cargo, activo, telefonos)
+                        Integer.Parse(sueldoPorMes) + 1.27, cargo, activo, telefonos)
                 )
 
             Case 1
@@ -70,14 +70,14 @@ Public Class ControlEmpleados
                 Me.empleados.Add(
                     New Gerente(PNom, SNom, PApe, SApe,
                         CI, calle, Integer.Parse(nroPuerta), esBis,
-                        Integer.Parse(sueldoPorMes), cargo, activo, telefonos)
+                        Integer.Parse(sueldoPorMes) + 1.97, cargo, activo, telefonos)
                 )
 
             Case 2
                 Me.empleados.Add(
                     New Operario(PNom, SNom, PApe, SApe,
                         CI, calle, Integer.Parse(nroPuerta), esBis,
-                        Integer.Parse(sueldoPorMes), cargo, activo, telefonos)
+                        Integer.Parse(sueldoPorMes) + 1.38, cargo, activo, telefonos)
                 )
         End Select
     End Function
