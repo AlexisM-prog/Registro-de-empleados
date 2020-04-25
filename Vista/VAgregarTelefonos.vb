@@ -41,10 +41,9 @@ Public Class VAgregarTelefonos
         InitializeComponent()
 
     End Sub
-    Public Sub New(control As ControlEmpleados, vAnterior As VModificarEmpleado, ByRef nroEmpleado As Integer)
+    Public Sub New(control As ControlEmpleados, vAnterior As VModificarEmpleado)
         Me.vAnterior = vAnterior
         Me.control = control
-        Me.nroEmpleado = nroEmpleado
         Me.Recargar = True
         InitializeComponent()
 
@@ -74,6 +73,7 @@ Public Class VAgregarTelefonos
         If vAnterior.GetType.IsAssignableFrom(GetType(VAgregarEmpleado)) Then
 
         Else
+            Me.nroEmpleado = vAnterior.nroEmpleado
             If Me.Recargar Then
                 Me.lbNumeros.Items.Clear()
                 Dim auxEmpleado = control.tomarEmpleado(nroEmpleado)

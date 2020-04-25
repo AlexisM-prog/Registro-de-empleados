@@ -14,7 +14,7 @@ Public Class VModificarEmpleado
         Me.vAnterior = vAnterior
         Me.control = control
         Me.nroEmpleado = 0
-        Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me, nroEmpleado)
+        Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.relacionNroComponente = New Dictionary(Of Integer, Object()) From {
@@ -51,24 +51,21 @@ Public Class VModificarEmpleado
             End If
         Next
         If datosValidos Then
-            auxEmpleado.PNom = txtPNom.Text
-            auxEmpleado.SNom = txtSNom.Text
-            auxEmpleado.PApe = txtPApe.Text
-            auxEmpleado.SApe = txtSApe.Text
-            auxEmpleado.calle = txtCalle.Text
-            auxEmpleado.nroPuerta = txtNroPuerta.Text
-            auxEmpleado.esBis = cboEsBis.Text = "Si"
-            auxEmpleado.sueldoPorMes = Integer.Parse(txtSueldoPorMes.Text)
+            Dim auxCargo = 0
             Select Case cboCargo.Text
                 Case "Administrativo"
-                    auxEmpleado.cargo = 0
+                    auxCargo = 0
                 Case "Gerente"
-                    auxEmpleado.cargo = 1
+                    auxCargo = 1
                 Case "Operario"
-                    auxEmpleado.cargo = 2
+                    auxCargo = 2
             End Select
-            auxEmpleado.activo = cckActivo.Checked
-            auxEmpleado.telefonos = vAgregarTelefonos.getNumerosTelefonicos()
+            control.modificarEmpleado(nroEmpleado, txtPNom.Text, txtSNom.Text,
+                txtPApe.Text, txtSApe.Text, auxEmpleado.CI, txtCalle.Text,
+                Integer.Parse(txtNroPuerta.Text), cboEsBis.Text = "Si",
+                Integer.Parse(txtSueldoPorMes.Text), auxCargo, cckActivo.Checked,
+                vAgregarTelefonos.getNumerosTelefonicos()
+            )
             vAgregarTelefonos.Recargar = True
 
             For i As Integer = 0 To relacionNroComponente.Count - 1
@@ -151,7 +148,6 @@ Public Class VModificarEmpleado
 
     Private Sub btnAgregarTelefonos_Click(sender As Object, e As EventArgs) Handles btnAgregarTelefonos.Click
         Me.Hide()
-        vAgregarTelefonos.nroEmpleado = nroEmpleado
         vAgregarTelefonos.Show()
     End Sub
 End Class

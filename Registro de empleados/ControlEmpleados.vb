@@ -42,6 +42,17 @@ Public Class ControlEmpleados
         End If
         Return problemas
     End Function
+    Private Function eliminarEmpleado(pos As Integer)
+        Me.empleados.RemoveAt(pos)
+    End Function
+    Function modificarEmpleado(pos As Integer, PNom As String, SNom As String, PApe As String, SApe As String,
+                  CI As String, calle As String, nroPuerta As String, esBis As Boolean,
+                  sueldoPorMes As String, cargo As Integer, activo As Boolean, telefonos As String())
+        Me.eliminarEmpleado(pos)
+        Me.agregarEmpleado(PNom, SNom, PApe, SApe, CI, calle, nroPuerta,
+                           esBis, sueldoPorMes, cargo, activo, telefonos)
+    End Function
+
     Function agregarEmpleado(PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As String, esBis As Boolean,
                   sueldoPorMes As String, cargo As Integer, activo As Boolean, telefonos As String())
@@ -80,7 +91,6 @@ Public Class ControlEmpleados
         Next
         Return modificicadoAnterior
     End Function
-
     Function tomarEmpleado(pos As Integer) As Empleado
         If pos < empleados.Count And pos > -1 Then
             Return empleados(pos)
