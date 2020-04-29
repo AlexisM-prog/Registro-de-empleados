@@ -52,12 +52,10 @@ Public Class VModificarEmpleado
             End If
         Next
         If datosValidos Then
-            Dim auxCargo = cboCargo.SelectedIndex
-
             control.modificarEmpleado(nroEmpleado, txtPNom.Text, txtSNom.Text,
                 txtPApe.Text, txtSApe.Text, auxEmpleado.CI, txtCalle.Text,
-                Integer.Parse(txtNroPuerta.Text), cboEsBis.Text = "Si",
-                Integer.Parse(txtSueldoPorMes.Text), auxCargo, cckActivo.Checked,
+                Integer.Parse(txtNroPuerta.Text), cboEsBis.SelectedIndex = 0,
+                Integer.Parse(txtSueldoPorMes.Text), cboCargo.SelectedItem, cckActivo.Checked,
                 vAgregarTelefonos.getNumerosTelefonicos()
             )
             vAgregarTelefonos.recargar = True
@@ -84,9 +82,9 @@ Public Class VModificarEmpleado
         txtCalle.Text = aux.calle
         txtNroPuerta.Text = aux.nroPuerta
         If aux.esBis Then
-            cboEsBis.Text = "Si"
+            cboEsBis.SelectedIndex = 0
         Else
-            cboEsBis.Text = "No"
+            cboEsBis.SelectedIndex = 1
         End If
         cckActivo.Checked = aux.activo
         txtSueldoPorMes.Text = aux.sueldoPorMes
@@ -95,15 +93,16 @@ Public Class VModificarEmpleado
         For i As Integer = 0 To Me.relacionNroComponente.Count - 1
             rojoSiEstaVacia(relacionNroComponente(i)(0), relacionNroComponente(i)(1))
         Next
-        Me.cboEsBis.SelectedIndex = 0
-        Me.cboCargo.SelectedIndex = 0
+
 
     End Sub
     Function rojoSiEstaVacia(label As Label, txtBox As TextBox)
-        If txtBox.Text = "" Then
-            label.ForeColor = Drawing.Color.Red
-        Else
-            label.ForeColor = Drawing.Color.Black
+        If Not txtBox Is Nothing Then
+            If txtBox.Text = "" Then
+                label.ForeColor = Drawing.Color.Red
+            Else
+                label.ForeColor = Drawing.Color.Black
+            End If
         End If
     End Function
     Function soloNumeros(e As KeyPressEventArgs)
@@ -141,5 +140,9 @@ Public Class VModificarEmpleado
     Private Sub btnAgregarTelefonos_Click(sender As Object, e As EventArgs) Handles btnAgregarTelefonos.Click
         Me.Hide()
         vAgregarTelefonos.Show()
+    End Sub
+
+    Private Sub cboEsBis_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboEsBis.SelectedIndexChanged
+
     End Sub
 End Class

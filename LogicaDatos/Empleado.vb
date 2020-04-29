@@ -12,26 +12,12 @@
             _sueldoPorMes = value
         End Set
     End Property
-    Public Property cargo As String
+    Public Property cargo As Integer
         Get
             Return _cargo
         End Get
-        Set(value As String)
-
-            If value Is Nothing Then
-                Throw New ArgumentNullException(NameOf(value))
-            Else
-                Select Case value
-                    Case "Administrativo"
-                        _cargo = 0
-                    Case "Gerente"
-                        _cargo = 1
-                    Case "Operario"
-                        _cargo = 2
-                End Select
-
-            End If
-
+        Set(value As Integer)
+            _cargo = value
         End Set
     End Property
     Public Property activo As Boolean

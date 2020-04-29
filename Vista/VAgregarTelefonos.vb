@@ -34,15 +34,15 @@ Public Class VAgregarTelefonos
         Return telefonos.ToArray()
     End Function
 
-    Public Sub New(control As ControlEmpleados, vAnterior As VAgregarEmpleado)
-        Me.vAnterior = vAnterior
+    Public Sub New(control As ControlEmpleados, vAgregarEmpleado As VAgregarEmpleado)
+        Me.vAnterior = vAgregarEmpleado
         Me.empleado = Nothing
         Me.control = control
         InitializeComponent()
 
     End Sub
-    Public Sub New(control As ControlEmpleados, vAnterior As VModificarEmpleado)
-        Me.vAnterior = vAnterior
+    Public Sub New(control As ControlEmpleados, vModificarEmpleado As VModificarEmpleado)
+        Me.vAnterior = vModificarEmpleado
         Me.control = control
         Me.recargar = True
         InitializeComponent()

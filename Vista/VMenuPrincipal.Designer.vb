@@ -39,33 +39,33 @@ Partial Class VMenuPrincipal
         '
         'btnImportePago
         '
-        Me.btnImportePago.Font = New System.Drawing.Font("Corbel", 36.0!)
+        Me.btnImportePago.Font = New System.Drawing.Font("Corbel", 30.0!)
         Me.btnImportePago.ForeColor = System.Drawing.SystemColors.WindowText
         Me.btnImportePago.Image = Global.Vista.My.Resources.Resources.icons8_lista_32
-        Me.btnImportePago.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnImportePago.Location = New System.Drawing.Point(498, 165)
+        Me.btnImportePago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnImportePago.Location = New System.Drawing.Point(255, 358)
         Me.btnImportePago.Name = "btnImportePago"
-        Me.btnImportePago.Size = New System.Drawing.Size(367, 382)
+        Me.btnImportePago.Size = New System.Drawing.Size(539, 200)
         Me.btnImportePago.TabIndex = 2
-        Me.btnImportePago.Text = "Importe de pago"
-        Me.btnImportePago.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnImportePago.Text = "                    Importe de pago"
+        Me.btnImportePago.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnImportePago.UseVisualStyleBackColor = True
         '
         'btnRegistro
         '
-        Me.btnRegistro.Font = New System.Drawing.Font("Corbel", 36.0!)
+        Me.btnRegistro.Font = New System.Drawing.Font("Corbel", 30.0!)
         Me.btnRegistro.ForeColor = System.Drawing.SystemColors.WindowText
         Me.btnRegistro.Image = Global.Vista.My.Resources.Resources.icons8_grupos_de_usuarios_32
-        Me.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnRegistro.Location = New System.Drawing.Point(74, 165)
+        Me.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnRegistro.Location = New System.Drawing.Point(60, 152)
         Me.btnRegistro.Name = "btnRegistro"
-        Me.btnRegistro.Size = New System.Drawing.Size(369, 380)
+        Me.btnRegistro.Size = New System.Drawing.Size(539, 200)
         Me.btnRegistro.TabIndex = 1
-        Me.btnRegistro.Text = "Registro de empleados"
-        Me.btnRegistro.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnRegistro.Text = "         Registro de empleados"
+        Me.btnRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnRegistro.UseVisualStyleBackColor = True
         '
-        'Form1
+        'VMenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -73,7 +73,7 @@ Partial Class VMenuPrincipal
         Me.Controls.Add(Me.btnImportePago)
         Me.Controls.Add(Me.btnRegistro)
         Me.Controls.Add(Me.lblAgregarEmpleado)
-        Me.Name = "Form1"
+        Me.Name = "VMenuPrincipal"
         Me.Text = "Control de Empleados"
         Me.ResumeLayout(False)
         Me.PerformLayout()

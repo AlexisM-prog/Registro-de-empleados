@@ -33,13 +33,13 @@ Partial Class VRegistroEmpleado
         Me.btnModificarEmpleado.Font = New System.Drawing.Font("Corbel", 36.0!)
         Me.btnModificarEmpleado.ForeColor = System.Drawing.SystemColors.WindowText
         Me.btnModificarEmpleado.Image = Global.Vista.My.Resources.Resources.icons8_editar_usuario_masculino_32
-        Me.btnModificarEmpleado.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnModificarEmpleado.Location = New System.Drawing.Point(498, 166)
+        Me.btnModificarEmpleado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnModificarEmpleado.Location = New System.Drawing.Point(242, 364)
         Me.btnModificarEmpleado.Name = "btnModificarEmpleado"
-        Me.btnModificarEmpleado.Size = New System.Drawing.Size(367, 382)
+        Me.btnModificarEmpleado.Size = New System.Drawing.Size(539, 200)
         Me.btnModificarEmpleado.TabIndex = 5
-        Me.btnModificarEmpleado.Text = "Modificar empleado"
-        Me.btnModificarEmpleado.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnModificarEmpleado.Text = "          Modificar empleado"
+        Me.btnModificarEmpleado.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnModificarEmpleado.UseVisualStyleBackColor = True
         '
         'btnAgregarEmpleado
@@ -47,13 +47,13 @@ Partial Class VRegistroEmpleado
         Me.btnAgregarEmpleado.Font = New System.Drawing.Font("Corbel", 36.0!)
         Me.btnAgregarEmpleado.ForeColor = System.Drawing.SystemColors.WindowText
         Me.btnAgregarEmpleado.Image = Global.Vista.My.Resources.Resources.icons8_añadir_usuario_masculino_32
-        Me.btnAgregarEmpleado.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAgregarEmpleado.Location = New System.Drawing.Point(88, 168)
+        Me.btnAgregarEmpleado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAgregarEmpleado.Location = New System.Drawing.Point(88, 148)
         Me.btnAgregarEmpleado.Name = "btnAgregarEmpleado"
-        Me.btnAgregarEmpleado.Size = New System.Drawing.Size(369, 380)
+        Me.btnAgregarEmpleado.Size = New System.Drawing.Size(539, 200)
         Me.btnAgregarEmpleado.TabIndex = 4
-        Me.btnAgregarEmpleado.Text = "Agregar empleado"
-        Me.btnAgregarEmpleado.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnAgregarEmpleado.Text = "       Agregar empleado"
+        Me.btnAgregarEmpleado.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnAgregarEmpleado.UseVisualStyleBackColor = True
         '
         'lblAgregarEmpleado
@@ -76,7 +76,7 @@ Partial Class VRegistroEmpleado
         Me.btnAtras.TabIndex = 40
         Me.btnAtras.UseVisualStyleBackColor = True
         '
-        'VRegistroEmpleadosvb
+        'VRegistroEmpleado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -85,7 +85,7 @@ Partial Class VRegistroEmpleado
         Me.Controls.Add(Me.btnModificarEmpleado)
         Me.Controls.Add(Me.btnAgregarEmpleado)
         Me.Controls.Add(Me.lblAgregarEmpleado)
-        Me.Name = "VRegistroEmpleadosvb"
+        Me.Name = "VRegistroEmpleado"
         Me.Text = "'"
         Me.ResumeLayout(False)
         Me.PerformLayout()

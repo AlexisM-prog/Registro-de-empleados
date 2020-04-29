@@ -48,7 +48,7 @@ Public Class ControlEmpleados
     End Function
     Function modificarEmpleado(pos As Integer, PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As String, esBis As Boolean,
-                  sueldoPorMes As String, cargo As Integer, activo As Boolean, telefonos As String())
+                  sueldoPorMes As String, cargo As String, activo As Boolean, telefonos As String())
         Me.eliminarEmpleado(pos)
         Me.agregarEmpleado(PNom, SNom, PApe, SApe, CI, calle, nroPuerta,
                            esBis, sueldoPorMes, cargo, activo, telefonos)
@@ -56,29 +56,29 @@ Public Class ControlEmpleados
 
     Function agregarEmpleado(PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As String, esBis As Boolean,
-                  sueldoPorMes As String, cargo As Integer, activo As Boolean, telefonos As String())
+                  sueldoPorMes As String, cargo As String, activo As Boolean, telefonos As String())
 
         Select Case cargo
-            Case 0
+            Case "Administrativo"
                 Me.empleados.Add(
                     New Administrativo(PNom, SNom, PApe, SApe,
                         CI, calle, Integer.Parse(nroPuerta), esBis,
-                        Integer.Parse(sueldoPorMes) + 1.27, cargo, activo, telefonos)
+                        Integer.Parse(sueldoPorMes) + 1.27, 0, activo, telefonos)
                 )
 
-            Case 1
+            Case "Gerente"
 
                 Me.empleados.Add(
                     New Gerente(PNom, SNom, PApe, SApe,
                         CI, calle, Integer.Parse(nroPuerta), esBis,
-                        Integer.Parse(sueldoPorMes) + 1.97, cargo, activo, telefonos)
+                        Integer.Parse(sueldoPorMes) + 1.97, 1, activo, telefonos)
                 )
 
-            Case 2
+            Case "Operario"
                 Me.empleados.Add(
                     New Operario(PNom, SNom, PApe, SApe,
                         CI, calle, Integer.Parse(nroPuerta), esBis,
-                        Integer.Parse(sueldoPorMes) + 1.38, cargo, activo, telefonos)
+                        Integer.Parse(sueldoPorMes) + 1.38, 2, activo, telefonos)
                 )
         End Select
     End Function

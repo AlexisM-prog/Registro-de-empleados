@@ -151,9 +151,10 @@ Partial Class VBuscarEmpleado
         'ccbSoloTrabajando
         '
         Me.ccbSoloTrabajando.AutoSize = True
+        Me.ccbSoloTrabajando.Font = New System.Drawing.Font("Corbel", 10.0!)
         Me.ccbSoloTrabajando.Location = New System.Drawing.Point(99, 493)
         Me.ccbSoloTrabajando.Name = "ccbSoloTrabajando"
-        Me.ccbSoloTrabajando.Size = New System.Drawing.Size(128, 21)
+        Me.ccbSoloTrabajando.Size = New System.Drawing.Size(140, 25)
         Me.ccbSoloTrabajando.TabIndex = 41
         Me.ccbSoloTrabajando.Text = "solo trabajando"
         Me.ccbSoloTrabajando.UseVisualStyleBackColor = True

@@ -5,14 +5,14 @@ Imports System.Windows.Forms
 Imports System.Threading
 
 Public Class VAgregarEmpleado
-    Private vAnterior As VRegistroEmpleado
+    Private vRegistroEmpleado As VRegistroEmpleado
     Private control As ControlEmpleados
 
     Property relacionNroComponente As Dictionary(Of Integer, Object())
     Property vAgregarTelefonos As VAgregarTelefonos
 
-    Public Sub New(control As ControlEmpleados, vAnterior As VRegistroEmpleado)
-        Me.vAnterior = vAnterior
+    Public Sub New(control As ControlEmpleados, vRegistroEmpleado As VRegistroEmpleado)
+        Me.vRegistroEmpleado = vRegistroEmpleado
         Me.control = control
         Me.relacionNroComponente = New Dictionary(Of Integer, Object())
         Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
@@ -34,7 +34,7 @@ Public Class VAgregarEmpleado
     End Sub
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
         Me.Hide()
-        Me.vAnterior.Show()
+        Me.vRegistroEmpleado.Show()
 
     End Sub
     Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
@@ -51,8 +51,8 @@ Public Class VAgregarEmpleado
         Next
         If datosValidos Then
             Me.control.agregarEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text, txtCI.Text, txtCalle.Text,
-                                txtNroPuerta.Text, cboEsBis.Text = "Si", txtSueldoPorMes.Text,
-                                cboCargo.SelectedIndex, cckActivo.Checked, vAgregarTelefonos.getNumerosTelefonicos())
+                                txtNroPuerta.Text, cboEsBis.SelectedIndex = 0, txtSueldoPorMes.Text,
+                                cboCargo.SelectedItem, cckActivo.Checked, vAgregarTelefonos.getNumerosTelefonicos())
 
             For i As Integer = 0 To problemas.Count - 1
                 Me.relacionNroComponente(i)(1).text = ""
@@ -60,7 +60,7 @@ Public Class VAgregarEmpleado
             Next
             Me.vAgregarTelefonos.lbNumeros.Items.Clear()
             Me.Hide()
-            vAnterior.Show()
+            vRegistroEmpleado.Show()
         End If
 
     End Sub
