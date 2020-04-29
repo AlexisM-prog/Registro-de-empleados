@@ -12,6 +12,7 @@ Public Class ControlEmpleados
     Function testearDatosEmpleado(PNom As String, SNom As String, PApe As String, SApe As String,
                   CI As String, calle As String, nroPuerta As String,
                   sueldoPorMes As String, cargo As Integer, telefonos As String()) As Boolean()
+        '(PNom, SNom, PApe, SApe, Nothing, calle, nroPuerta, sueldoPorMes, cargo, telefonos)
         Dim problemas() As Boolean = {
             True, True, True, True,' PNom, SNom, PApe, SApe,
             True, True, True, True} ' ci, calle, nroPuerta, sueldoPorMes
@@ -110,128 +111,6 @@ Public Class ControlEmpleados
     End Function
     Function perteneceAlStringSegundo(pequeño As String, mayor As String, plus As Integer) As Boolean
         ' Verifica que en una posición especifica del string mas pequeño coincide con una parte del grande
-
         Return Mid(mayor, plus, pequeño.Count + plus) = pequeño
-    End Function
-
-    Function buscarEmpleadosQue(nomVariable As String, formaComparar As Integer, valor As String, listaEmpleados As List(Of Empleado)) As List(Of Empleado)
-        Dim empleadosAux As List(Of Empleado) = New List(Of Empleado)
-
-
-        Select Case nomVariable
-            Case "PNom"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.PNom = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                Else
-                    For Each empl As Empleado In listaEmpleados
-                        For plus As Integer = 0 To empl.PNom.Count - valor.Count 'Esto Busca en todas las ubicaciones posibles porque solo se sabe que se incluye
-                            If Me.perteneceAlStringSegundo(valor, empl.PNom, plus) Then
-                                empleadosAux.Add(empl)
-                            End If
-                        Next
-                    Next
-                End If
-            Case "SNom"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.SNom = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                Else
-                    For Each empl As Empleado In listaEmpleados
-                        For plus As Integer = 0 To empl.SNom.Count - valor.Count 'Esto Busca en todas las ubicaciones posibles porque solo se sabe que se incluye
-                            If Me.perteneceAlStringSegundo(valor, empl.SNom, plus) Then
-                                empleadosAux.Add(empl)
-                            End If
-                        Next
-                    Next
-                End If
-            Case "PApe"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.PApe = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                Else
-                    For Each empl As Empleado In listaEmpleados
-                        For plus As Integer = 0 To empl.PApe.Count - valor.Count 'Esto Busca en todas las ubicaciones posibles porque solo se sabe que se incluye
-                            If Me.perteneceAlStringSegundo(valor, empl.PApe, plus) Then
-                                empleadosAux.Add(empl)
-                            End If
-                        Next
-                    Next
-                End If
-            Case "SApe"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.SApe = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                Else
-                    For Each empl As Empleado In listaEmpleados
-                        For plus As Integer = 0 To empl.SApe.Count - valor.Count 'Esto Busca en todas las ubicaciones posibles porque solo se sabe que se incluye
-                            If Me.perteneceAlStringSegundo(valor, empl.SApe, plus) Then
-                                empleadosAux.Add(empl)
-                            End If
-                        Next
-                    Next
-                End If
-            Case "CI"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.CI = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                Else
-                    For Each empl As Empleado In listaEmpleados
-                        For plus As Integer = 0 To empl.CI.Count - valor.Count 'Esto Busca en todas las ubicaciones posibles porque solo se sabe que se incluye
-                            If Me.perteneceAlStringSegundo(valor, empl.CI, plus) Then
-                                empleadosAux.Add(empl)
-                            End If
-                        Next
-                    Next
-                End If
-            Case "Calle"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.calle = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                Else
-                    For Each empl As Empleado In listaEmpleados
-                        For plus As Integer = 0 To empl.calle.Count - valor.Count 'Esto Busca en todas las ubicaciones posibles porque solo se sabe que se incluye
-                            If Me.perteneceAlStringSegundo(valor, empl.calle, plus) Then
-                                empleadosAux.Add(empl)
-                            End If
-                        Next
-                    Next
-                End If
-            Case "NroPuerta"
-                If formaComparar = 0 Then
-                    For Each empl As Empleado In listaEmpleados
-                        If empl.nroPuerta = valor Then
-                            empleadosAux.Add(empl)
-                        End If
-                    Next
-                End If
-            Case "EsBis"
-                For Each empl As Empleado In listaEmpleados
-                    Dim resultado As Boolean
-                    empl.esBis = Boolean.TryParse(valor, resultado)
-                    If resultado Then
-                        empleadosAux.Add(empl)
-                    End If
-                Next
-            Case Else
-        End Select
     End Function
 End Class

@@ -17,22 +17,23 @@ Public Class VModificarEmpleado
         Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Me.relacionNroComponente = New Dictionary(Of Integer, Object()) From {
-            {0, {Me.lblPNom, Me.txtPNom}},
-            {1, {Me.lblSNom, Me.txtSNom}},
-            {2, {Me.lblPApe, Me.txtPApe}},
-            {3, {Me.lblSApe, Me.txtSApe}},
-            {5, {Me.lblCalle, Me.txtCalle}},
-            {6, {Me.lblNroPuerta, Me.txtNroPuerta}},
-            {7, {Me.lblSueldoPorMes, Me.txtSueldoPorMes}}
-        }
-
+        Me.relacionNroComponente = New Dictionary(Of Integer, Object())
+        With relacionNroComponente
+            .Add(0, {Me.lblPNom, Me.txtPNom})
+            .Add(1, {Me.lblSNom, Me.txtSNom})
+            .Add(2, {Me.lblPApe, Me.txtPApe})
+            .Add(3, {Me.lblSApe, Me.txtSApe})
+            .Add(4, {Nothing, Nothing})
+            .Add(5, {Me.lblCalle, Me.txtCalle})
+            .Add(6, {Me.lblNroPuerta, Me.txtNroPuerta})
+            .Add(7, {Me.lblSueldoPorMes, Me.txtSueldoPorMes})
+        End With
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
         Me.Hide()
-        vAgregarTelefonos.Recargar = True
+        vAgregarTelefonos.recargar = True
         Me.vAnterior.Show()
     End Sub
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
@@ -51,22 +52,15 @@ Public Class VModificarEmpleado
             End If
         Next
         If datosValidos Then
-            Dim auxCargo = 0
-            Select Case cboCargo.Text
-                Case "Administrativo"
-                    auxCargo = 0
-                Case "Gerente"
-                    auxCargo = 1
-                Case "Operario"
-                    auxCargo = 2
-            End Select
+            Dim auxCargo = cboCargo.SelectedIndex
+
             control.modificarEmpleado(nroEmpleado, txtPNom.Text, txtSNom.Text,
                 txtPApe.Text, txtSApe.Text, auxEmpleado.CI, txtCalle.Text,
                 Integer.Parse(txtNroPuerta.Text), cboEsBis.Text = "Si",
                 Integer.Parse(txtSueldoPorMes.Text), auxCargo, cckActivo.Checked,
                 vAgregarTelefonos.getNumerosTelefonicos()
             )
-            vAgregarTelefonos.Recargar = True
+            vAgregarTelefonos.recargar = True
 
             For i As Integer = 0 To relacionNroComponente.Count - 1
                 If i <> 4 Then
@@ -98,13 +92,11 @@ Public Class VModificarEmpleado
         txtSueldoPorMes.Text = aux.sueldoPorMes
         cboCargo.SelectedIndex = aux.cargo
 
-        rojoSiEstaVacia(lblPNom, txtPNom)
-        rojoSiEstaVacia(lblSNom, txtSNom)
-        rojoSiEstaVacia(lblPApe, txtPApe)
-        rojoSiEstaVacia(lblSApe, txtSApe)
-        rojoSiEstaVacia(lblCalle, txtCalle)
-        rojoSiEstaVacia(lblNroPuerta, txtNroPuerta)
-        rojoSiEstaVacia(lblSueldoPorMes, txtSueldoPorMes)
+        For i As Integer = 0 To Me.relacionNroComponente.Count - 1
+            rojoSiEstaVacia(relacionNroComponente(i)(0), relacionNroComponente(i)(1))
+        Next
+        Me.cboEsBis.SelectedIndex = 0
+        Me.cboCargo.SelectedIndex = 0
 
     End Sub
     Function rojoSiEstaVacia(label As Label, txtBox As TextBox)

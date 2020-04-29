@@ -44,5 +44,4 @@ Public Class VImporte
         Next
         lblGasto.Text = "Gasto total:" & gastoTotal
     End Sub
-
 End Class

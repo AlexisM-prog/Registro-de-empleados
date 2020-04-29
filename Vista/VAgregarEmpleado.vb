@@ -7,7 +7,8 @@ Imports System.Threading
 Public Class VAgregarEmpleado
     Private vAnterior As VRegistroEmpleado
     Private control As ControlEmpleados
-    Private relacionNroComponente As Dictionary(Of Integer, Object())
+
+    Property relacionNroComponente As Dictionary(Of Integer, Object())
     Property vAgregarTelefonos As VAgregarTelefonos
 
     Public Sub New(control As ControlEmpleados, vAnterior As VRegistroEmpleado)
@@ -17,14 +18,17 @@ Public Class VAgregarEmpleado
         Me.vAgregarTelefonos = New VAgregarTelefonos(control, Me)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Me.relacionNroComponente.Add(0, {Me.lblPNom, Me.txtPNom})
-        Me.relacionNroComponente.Add(1, {Me.lblSNom, Me.txtSNom})
-        Me.relacionNroComponente.Add(2, {Me.lblPApe, Me.txtPApe})
-        Me.relacionNroComponente.Add(3, {Me.lblSApe, Me.txtSApe})
-        Me.relacionNroComponente.Add(4, {Me.lblCI, Me.txtCI})
-        Me.relacionNroComponente.Add(5, {Me.lblCalle, Me.txtCalle})
-        Me.relacionNroComponente.Add(6, {Me.lblNroPuerta, Me.txtNroPuerta})
-        Me.relacionNroComponente.Add(7, {Me.lblSueldoPorMes, Me.txtSueldoPorMes})
+        With relacionNroComponente
+            .Add(0, {Me.lblPNom, Me.txtPNom})
+            .Add(1, {Me.lblSNom, Me.txtSNom})
+            .Add(2, {Me.lblPApe, Me.txtPApe})
+            .Add(3, {Me.lblSApe, Me.txtSApe})
+            .Add(4, {Me.lblCI, Me.txtCI})
+            .Add(5, {Me.lblCalle, Me.txtCalle})
+            .Add(6, {Me.lblNroPuerta, Me.txtNroPuerta})
+            .Add(7, {Me.lblSueldoPorMes, Me.txtSueldoPorMes})
+        End With
+
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -37,7 +41,7 @@ Public Class VAgregarEmpleado
         Dim problemas() As Boolean = control.testearDatosEmpleado(txtPNom.Text, txtSNom.Text, txtPApe.Text, txtSApe.Text,
                                 txtCI.Text, txtCalle.Text, txtNroPuerta.Text, txtSueldoPorMes.Text, cboCargo.SelectedIndex, vAgregarTelefonos.getNumerosTelefonicos())
         Dim datosValidos As Boolean = True
-        For i As Integer = 0 To problemas.Count - 1
+        For i As Integer = 0 To problemas.GetUpperBound(0)
             If problemas(i) Then
                 Me.relacionNroComponente(i)(0).ForeColor = Drawing.Color.Red
                 datosValidos = False
@@ -103,14 +107,9 @@ Public Class VAgregarEmpleado
         End Select
     End Sub
     Private Sub VAgregarEmpleado_Load(sender As Object, e As EventArgs) Handles Me.Load
-        rojoSiEstaVacia(lblPNom, txtPNom)
-        rojoSiEstaVacia(lblSNom, txtSNom)
-        rojoSiEstaVacia(lblPApe, txtPApe)
-        rojoSiEstaVacia(lblSApe, txtSApe)
-        rojoSiEstaVacia(lblCI, txtCI)
-        rojoSiEstaVacia(lblCalle, txtCalle)
-        rojoSiEstaVacia(lblNroPuerta, txtNroPuerta)
-        rojoSiEstaVacia(lblSueldoPorMes, txtSueldoPorMes)
+        For i As Integer = 0 To Me.relacionNroComponente.Count - 1
+            rojoSiEstaVacia(relacionNroComponente(i)(0), relacionNroComponente(i)(1))
+        Next
         Me.cboEsBis.SelectedIndex = 0
         Me.cboCargo.SelectedIndex = 0
 

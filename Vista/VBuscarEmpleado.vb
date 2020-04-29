@@ -18,7 +18,7 @@ Public Class VBuscarEmpleado
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
         Me.Hide()
         Me.vAnterior.Show()
     End Sub
@@ -26,9 +26,9 @@ Public Class VBuscarEmpleado
         Dim auxEmpleado As Empleado
         Me.dtgTabla.Rows.Clear()
 
-        For i As Integer = 0 To 20
-            If control.nroDeEmpleados > i Then
-                auxEmpleado = control.tomarEmpleado(i)
+        For i As Integer = 0 To control.nroDeEmpleados - 1
+            auxEmpleado = control.tomarEmpleado(i)
+            If Not Me.ccbSoloTrabajando.Checked Or auxEmpleado.activo Then
                 If auxEmpleado.activo = True Then
                     Me.dtgTabla.Rows.Add(
                         New String() {
@@ -60,9 +60,9 @@ Public Class VBuscarEmpleado
         Dim ciEntrada, ciGuardado As String
         Me.dtgTabla.Rows.Clear()
 
-        For i As Integer = 0 To 20
-            If control.nroDeEmpleados > i Then
-                auxEmpleado = control.tomarEmpleado(i)
+        For i As Integer = 0 To control.nroDeEmpleados - 1
+            auxEmpleado = control.tomarEmpleado(i)
+            If Not Me.ccbSoloTrabajando.Checked Or auxEmpleado.activo Then
                 ciGuardado = auxEmpleado.CI
                 ciEntrada = txtBuscarCI.Text
                 If ciEntrada.Equals(ciGuardado.Substring(0, ciEntrada.Count)) Or ciEntrada.Length <= 0 Then
@@ -79,6 +79,10 @@ Public Class VBuscarEmpleado
     End Sub
 
     Private Sub txtBuscarCI_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBuscarCI.KeyPress
-        solonumeros(e)
+        soloNumeros(e)
+    End Sub
+    Private Sub ccbSoloTrabajando_CheckStateChanged(sender As Object, e As EventArgs) Handles ccbSoloTrabajando.CheckStateChanged
+        txtBuscarCI_KeyUp(sender, Nothing)
+
     End Sub
 End Class

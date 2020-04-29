@@ -13,25 +13,13 @@ Public Class VMenuPrincipal
 
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblAgregarEmpleado.Click
-
-    End Sub
-
     Private Sub clickbtnRegistroDeEmpleados(sender As Object, e As EventArgs) Handles btnRegistro.Click
         Me.Hide()
         vRegistroEmpleados.Show()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub clickbtnImporte(sender As Object, e As EventArgs) Handles btnImportePago.Click
         Me.Hide()
         vImporte.Show()
-    End Sub
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
 End Class

@@ -17,7 +17,7 @@ Public Class VAgregarTelefonos
             _nroEmpleado = value
         End Set
     End Property
-    Public Property Recargar As Boolean
+    Public Property recargar As Boolean
         Get
             Return _recargar
         End Get
@@ -44,7 +44,7 @@ Public Class VAgregarTelefonos
     Public Sub New(control As ControlEmpleados, vAnterior As VModificarEmpleado)
         Me.vAnterior = vAnterior
         Me.control = control
-        Me.Recargar = True
+        Me.recargar = True
         InitializeComponent()
 
     End Sub
@@ -74,7 +74,7 @@ Public Class VAgregarTelefonos
 
         Else
             Me.nroEmpleado = vAnterior.nroEmpleado
-            If Me.Recargar Then
+            If Me.recargar Then
                 Me.lbNumeros.Items.Clear()
                 Dim auxEmpleado = control.tomarEmpleado(nroEmpleado)
                 If Not auxEmpleado Is Nothing Then
@@ -83,7 +83,7 @@ Public Class VAgregarTelefonos
                     Next
                 End If
 
-                Recargar = False
+                recargar = False
             End If
         End If
 

@@ -25,7 +25,7 @@ Partial Class VBuscarEmpleado
         Me.lblAgregarEmpleado = New System.Windows.Forms.Label()
         Me.txtBuscarCI = New System.Windows.Forms.TextBox()
         Me.btnModificar = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.btnAtras = New System.Windows.Forms.Button()
         Me.dtgTabla = New System.Windows.Forms.DataGridView()
         Me.CI = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SueldoPorMes = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -34,6 +34,7 @@ Partial Class VBuscarEmpleado
         Me.PrimerApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SegundoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblBusquedaCI = New System.Windows.Forms.Label()
+        Me.ccbSoloTrabajando = New System.Windows.Forms.CheckBox()
         CType(Me.dtgTabla, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,15 +65,15 @@ Partial Class VBuscarEmpleado
         Me.btnModificar.Text = "Modificar"
         Me.btnModificar.UseVisualStyleBackColor = True
         '
-        'Button4
+        'btnAtras
         '
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Image = Global.Vista.My.Resources.Resources.icons8_volver_32
-        Me.Button4.Location = New System.Drawing.Point(731, 29)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(136, 88)
-        Me.Button4.TabIndex = 38
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnAtras.Image = Global.Vista.My.Resources.Resources.icons8_volver_32
+        Me.btnAtras.Location = New System.Drawing.Point(731, 29)
+        Me.btnAtras.Name = "btnAtras"
+        Me.btnAtras.Size = New System.Drawing.Size(136, 88)
+        Me.btnAtras.TabIndex = 38
+        Me.btnAtras.UseVisualStyleBackColor = True
         '
         'dtgTabla
         '
@@ -147,13 +148,24 @@ Partial Class VBuscarEmpleado
         Me.lblBusquedaCI.TabIndex = 40
         Me.lblBusquedaCI.Text = "Ingrese cedula:"
         '
+        'ccbSoloTrabajando
+        '
+        Me.ccbSoloTrabajando.AutoSize = True
+        Me.ccbSoloTrabajando.Location = New System.Drawing.Point(99, 493)
+        Me.ccbSoloTrabajando.Name = "ccbSoloTrabajando"
+        Me.ccbSoloTrabajando.Size = New System.Drawing.Size(128, 21)
+        Me.ccbSoloTrabajando.TabIndex = 41
+        Me.ccbSoloTrabajando.Text = "solo trabajando"
+        Me.ccbSoloTrabajando.UseVisualStyleBackColor = True
+        '
         'VBuscarEmpleado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(917, 592)
+        Me.Controls.Add(Me.ccbSoloTrabajando)
         Me.Controls.Add(Me.dtgTabla)
-        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.btnModificar)
         Me.Controls.Add(Me.txtBuscarCI)
         Me.Controls.Add(Me.lblAgregarEmpleado)
@@ -169,7 +181,7 @@ Partial Class VBuscarEmpleado
     Friend WithEvents lblAgregarEmpleado As Windows.Forms.Label
     Friend WithEvents txtBuscarCI As Windows.Forms.TextBox
     Friend WithEvents btnModificar As Windows.Forms.Button
-    Friend WithEvents Button4 As Windows.Forms.Button
+    Friend WithEvents btnAtras As Windows.Forms.Button
     Friend WithEvents dtgTabla As Windows.Forms.DataGridView
     Friend WithEvents CI As Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SueldoPorMes As Windows.Forms.DataGridViewTextBoxColumn
@@ -178,4 +190,5 @@ Partial Class VBuscarEmpleado
     Friend WithEvents PrimerApellido As Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SegundoNombre As Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents lblBusquedaCI As Windows.Forms.Label
+    Friend WithEvents ccbSoloTrabajando As Windows.Forms.CheckBox
 End Class
