@@ -196,6 +196,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\CarpetaDiagramas\DiagramaDeBaseDeDatos.dia" />
+    <None Include="Resources\CarpetaDiagramas\diagramaDeClases.dia" />
+    <None Include="Resources\CarpetaDiagramas\diseñoDeVentanas.studio" />
     <None Include="Resources\icons8-añadir-usuario-masculino-32.png" />
   </ItemGroup>
   <ItemGroup>

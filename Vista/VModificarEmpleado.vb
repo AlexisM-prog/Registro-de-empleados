@@ -93,8 +93,6 @@ Public Class VModificarEmpleado
         For i As Integer = 0 To Me.relacionNroComponente.Count - 1
             rojoSiEstaVacia(relacionNroComponente(i)(0), relacionNroComponente(i)(1))
         Next
-
-
     End Sub
     Function rojoSiEstaVacia(label As Label, txtBox As TextBox)
         If Not txtBox Is Nothing Then
